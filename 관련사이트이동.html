@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SiteName|PageName</title>
+  <script type="text/javascript">
+  	function goHref() {
+  		var href = document.getElementById("rel_site").value;
+  		//location.href = "http://" + href;
+  		window.open("http://" + href);
+  	}
+  </script>
+ </head>
+ <body>
+  <div>
+  	<select name="rel_site" id="rel_site">
+  		<option value="www.naver.com">네이버</option>
+  		<option value="www.daum.net">다음</option>
+  		<option value="www.google.com">구글</option>
+  	</select>
+  	<button id="goBtn" onclick="goHref();">이동</button>
+  </div>
+ </body>
+</html>

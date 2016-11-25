@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>댓글 글자수 세기</title>
+    <script type="text/javascript">
+    var num = 0;
+    			// '+' = 한글자 이상  '*' = 0개 이상   '\s' == 공백
+	var oldText = "";    			
+    function countText(obj) {
+        var reg = /^[가-힣ㄱ-ㅎ0-9]+[ㄱ-ㅎ가-힣0-9 \s]*$/g;
+        var t = obj.value;
+       	var m = reg.exec(t);
+       		if(m == null && t != ""){
+       			obj.value = oldText;
+       		}
+       /*for(var i = 0; i < obj.value.length; i++) {
+       		var tn = escape(obj.value.charAt(i)).length;
+       		if(reg.exec(t) == null && tn == 1){
+       			obj.value = oldText;
+       		}
+       }*/
+        var c = document.getElementById("count");
+        c.innerHTML = t.length;
+
+        if (t.length > 100) {
+            obj.value = obj.value.substr(0, 100);
+            count.innerHTML = 100;
+        }
+        oldText = obj.value;
+    }
+    </script>
+</head>
+
+<body>
+    <textarea name="memo" id="memo" cols="80" rows="10" onkeyup="countText(this);" placeholder="한글로만 작성해주세욧!"></textarea>
+    <p><span id="count">0</span> / 100</p>
+</body>
+
+</html>
