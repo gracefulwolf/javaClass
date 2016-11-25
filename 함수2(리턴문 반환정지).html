@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript">
+    /* 
+              질의 응답창을 이용해서 
+              연산자 게임을 만드시오.
+              */
+
+    var arrOp = ["+", "-", "*"];
+    var score = 0;
+
+    function game() {
+        var op = Math.floor(Math.random() * 3);
+        var num1 = Math.ceil(Math.random() * 10);
+        var num2 = Math.ceil(Math.random() * 10);
+        var num3 = prompt(num1 + " " + arrOp[op] + " " + num2 + " =", "0");
+
+        var num4 = eval(num1 + arrOp[op] + num2);
+        var sc = document.getElementById("score");
+        var lastname = document.getElementById("score_name");
+        if (num3 == num4) {
+            // alert("정답이다");
+            score += 10;
+            sc.innerHTML = score;
+            setTimeout(game, 600);
+
+        } else {
+            
+            score -= 10;
+            alert("틀렸다");
+            lastname.innerHTML = "최종스코어";
+            sc.innerHTML = score;
+        }
+
+
+    }
+
+
+    </script>
+    <title>SiteName|PageName</title>
+</head>
+
+<body>
+    <h1> <span id="score_name">점수</span> : <span id="score">0</span></h1>
+    <button onclick="game();">게임실행</button>
+
+</body>
+
+</html>

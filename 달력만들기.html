@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style type="text/css">
+    .red {
+        color: red;
+    }
+    
+    .blue {
+        color: blue;
+    }
+    
+    .orange {
+        background: orange;
+    }
+    </style>
+    <script type="text/javascript">
+    /* var t = "<table border='1'>",
+                            s = 1;
+                        t += "<thead>";
+                        t += "<th>일</th>";
+                        t += "<th>월</th>";
+                        t += "<th>화</th>";
+                        t += "<th>수</th>";
+                        t += "<th>목</th>";
+                        t += "<th>금</th>";
+                        t += "<th>토</th>";
+                        t += "</thead>";
+                        t += "<tbody>";
+                        for (var k = 1; k <= 5; k++) {
+                            t += "<tr>";
+                            for (var i = 1; i <= 7; i++) {
+                                if (k == 1 && i <= 2 || s > 30) {
+                                    t += "<td></td>"
+                                } else {
+                                    t += "<td>" + s + "</td>";
+                                    s++;
+                                }
+                            }
+                        }
+                        t += "</tr>";
+                        t += "</tbody>";
+                        t += "</table>";
+                        document.write(t);*/
+
+
+
+    /* var t = "<table border='1'>";
+    var num = 1;
+    t += "<thead>";
+    t += "<tr>";
+    t += "<th>일</th>";
+    t += "<th>월</th>";
+    t += "<th>화</th>";
+    t += "<th>수</th>";
+    t += "<th>목</th>";
+    t += "<th>금</th>";
+    t += "<th>토</th>";
+    t += "</tr>";
+    t += "</thead>";
+    t += "<tbody>";
+
+    for (var i = 1; i <= 5; i++) {
+        t += "<tr>";
+        for (var k = 1; k <= 7; k++) {
+            if (i == 1 && k <= 4) {
+                t += "<td> </td>";
+            } else {
+                if (k == 1) {
+                    t += "<td class='red'>" + num + "</td>";
+                } else if (k == 7) {
+                    t += "<td class='blue'>" + num + "</td>";
+                } else {
+                    t += "<td>" + num + "</td>";
+
+                }
+                num++;
+            }
+        }
+    t += "</tr>";
+    }
+    
+    t += "</tbody>";
+    t += "</table>";
+*/
+
+    /*   var day = 1;
+    var t = "<table border='6'>";
+    t += "<tbody>";
+    for (var i = 1; i <= 5; i++) {
+        t += "<tr>";
+        for (var k = 1; k <= 7; k++) {
+            if (i == 1 && k <= 1 || day > 29) {
+                t += "<td></td>";
+            } else {
+                if (k == 1) {
+                    t += "<td class='red'>" + day + "</td>";
+                } else if {
+                    t += "<td class='blue'>" + day + "</td>";
+                } else {
+                    t += "<td>" + day + "</td>";
+                    day++;
+                }
+            }
+
+        }
+
+    }
+    t += "</tr>";
+    t += "</tbody>";
+    t += "</table>";
+*/
+    var num = 1;
+    var day = 1;
+    var t = "<table border='1'>";
+    t += "<tbody>";
+    for (var i = 1; i <= 4; i++) {
+        t += "<tr>";
+        for (var k = 1; k <= 5; k++) {
+            if (num % 2 == 0) {
+                t += "<td class='orange'> </td>";
+            } else {
+                t += "<td>" + day + "</td>";
+                day++
+            }
+            num++
+        }
+        t += "</tr>";
+    }
+    t += "</tbody>";
+    t += "</table>";
+   document.write(t);
+    </script>
+    <title>SiteName|PageName</title>
+</head>
+
+<body>
+</body>
+
+</html>

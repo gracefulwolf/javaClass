@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <script type="text/javascript">
+    //바로실행 함수
+    (function() {
+        var num = 1;
+        //alert(1234);
+    }());               //  /\d{3}-\d{3,4}-\d{4}/gi
+    					//  /(010|011|016|019|017)-\d{3,4}-\d{4}$/gi;    앞에 여러개 넣을땐  ( | ) <--이렇게
+    function chkNumber(obj) {
+    	var reg_name = /^[가-힣]{2,6}$/gi;
+        var reg_phone = /\d{3}-\d{3,4}-\d{4}$/gi; //숫자패턴  정규표현객체  g= 전역 i = 대소문자가리지말라 
+        										  //$ = 뒤가 반듯이 숫자4개로 되야함  ^ = 앞에 넣고 앞에도 맞추는
+        									//요기 아래 name값
+        var resultName = reg_name.exec(obj.user_name.value);									  
+        var result = reg_phone.exec(obj.phone_number.value);
+        if (result == null || resultName == null ) {
+        	alert("다시입력하시오");
+            return false;
+        }
+        /* if (isNaN(obj.phone_number.value)) {
+             return false; //안넘어가게 만들어줌 아래도return 넣어줘야함
+         }*/
+    }
+    </script>
+</head>
+
+<body>
+    <form action="http://www.naver.com" onsubmit="return chkNumber(this);">
+    <p>
+    	이름 : 
+    	<input type="text" name="user_name" id="user_name">
+    </p>
+        <p>연락처 :
+            <input type="text" name="phone_number" id="phone_number" value="010-8764-9155" /> (숫자,"-"만 입력하세요!)</p>
+        <input type="submit" value="등록완료">
+    </form>
+</body>
+
+</html>

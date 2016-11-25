@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>조건문</title>
+  <script type="text/javascript">
+  /*
+  질의 응답창을 이용하여, 10보다 큰 값을 입력하시오.
+  조건을 만족했을 경우에만 입력한 숫자가 출력되도록 하시오.
+  */
+  /*
+  var num = prompt("10보다 큰값을 입력하시오","0");
+
+    if(num>10) {
+
+        document.write("num","<br/>");
+    }
+    document.write("============================문장종료====================================");
+  */
+  /*
+    질의 응답창으로 숫자를 입력받고, 0번보다 큰 숫자일 경우엔 "양수"  
+    -0번보다 작은 숫자일 경우엔 "음수"라 출력하시오
+
+  */
+  /*
+  var num =prompt("숫자를 입력하시오","0");
+  if(num>0) {
+    document.write("양수","<br/>");
+  }else{
+    document.write("음수","<br/>"); 
+  }
+  */
+  /*
+    질의 응답창에 올해 년도를 입력하고,
+    윤년일 경우엔 "윤년"
+    평년일 경우엔 "평년" 이라출력하시오
+  */
+/*
+    var year =prompt("년도를 입력하시오","0000");
+    if (year = year % 4 ==0) {
+       document.write("윤년");
+    }else if(year % 100 != 0) {
+        document.write("윤년");
+    }else{
+        document.write("평년");
+    }
+   if(year % 4 == 0 && year % 100 !=0 || year % 400 == 0) 
+*/
+
+
+/*
+    질의 응답창에 숫자입력
+    0보다 큰 숫자일 경우 양수
+    0일경우엔 제로 0보다 작은 숫자일 경우엔 음수
+*/
+/*
+ var num = prompt("숫자입력해라","0");
+  if(num>0) {
+    document.write("양수");
+  }else if(num == 0){
+    document.write("제로");
+  }else{
+    document.write("음수");
+  }
+*/
+/*
+  수학점수를 입력하고 
+  만일  90점 이상일 경우엔 "A"
+        70점 이상일 경우엔 "B"
+        60점 이상일 경우엔 "C"
+        60점 미만일 경우엔 "F"
+
+*/
+/*
+ var test = prompt("시험점수입력해봐라","0")
+ if(test >= 90) {
+  document.write("A");
+ }else if(test >= 70) {
+  document.write("B");
+ }else if(test >= 60) {
+  document.write("C");
+ }else{
+  document.write("F");
+ }
+ */
+ /*
+  질의 응답창을이용하여 현재 몇월인지를 입력하고
+  계절이 출력되도록 하시오
+  봄, 여름, 가을, 겨울
+ */
+/*
+ var mon = prompt("현재 몇월?","00");
+ if(mon <1 || mon >12) {
+  alert("날짜를 잘못 입력했다!");
+  location.reload();
+ }
+ if(mon>=3 && mon<=5) {
+    document.write("봄");
+ }else if(mon>=6 && mon<=9) {
+    document.write("여름");
+ }else if(mon>=10 && mon<=11) {
+    document.write("가을");
+ }else{
+    document.write("겨울");
+ }  
+ */
+ /*
+  국어, 영어, 수학 점수를 입력받고
+  각 과목 점수가 60점 이상이고, 평균이 70점 이상일 경우엔 "합격"이라 출력되고.
+  평균 점수가 70점 미만일 경우엔 "불합격"
+  평균 점수가 70점 이상인데 과목 점수가 60점 미만일 경우엔"과락"이라 출력하시오
+ */
+
+  var  kor, eng, math, avg;
+  kor = Number(prompt("국어점수는","0"));
+  eng = Number(prompt("영어점수는","0"));
+  math = Number(prompt("수학점수는","0"));
+  
+ avg = (kor + eng + math) / 3;
+
+ if(kor >= 60 && eng >= 60 && math >= 60 && avg >= 70) {
+    document.write("합격");
+ }else if(kor <60 && eng <60 && math <60 || avg >=70) {
+     document.write("과락");
+ }else {
+     document.write("불합격");
+ }
+
+
+
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <script type="text/javascript">
+    var arrMember = ["한필랑", "최선화", "정희영", "이성룡", "왕강림", "신창호", "서미연", "박지혜", "박수정", "류인하", "김혜진", "김영은", "김수영", "김선영", "곽정훈", "고지은"];
+    var t = "";
+    var time = 1000;
+    function rndName() { //랜덤함수
+        t = "";
+        rndNum--;
+        
+        time -= 100;
+        var count = document.getElementById('count');
+        count.innerHTML = rndNum;
+        console.log(rndNum);
+        if(rndNum == 0) {
+         console.log("==============    clearTimeout(k);     ====================");
+         clearTimeout(k);
+         return;
+        }
+        arrMember.sort(function() {
+            return Math.random() - Math.random();
+        });
+        for (var i = 0; i < arrMember.length; i++) {
+            if ((i + 1) % 3 == 0) {
+                t += "," + arrMember[i] + "<br/><br/>";
+            } else if ((i + 1) % 3 == 1) {
+                t += arrMember[i];
+            } else {
+                t += "," + arrMember[i];
+            }
+        }
+        //console.log(t);
+        var print = document.getElementById("print")
+        print.innerHTML = t;
+      	var k = setTimeout(rndName,time);
+    }
+    var rndNum;
+    function game() { //시작함수
+        rndNum = Math.floor(Math.random() * 50) + 5;
+        rndName();
+    }
+    </script>
+</head>
+
+<body>
+    <button onclick="game();">조추첨</button>
+    <p id="count"></p>
+    <p id="print"></p>
+</body>
+
+</html>

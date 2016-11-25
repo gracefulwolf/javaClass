@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <script type="text/javascript">
+    /*
+  	var t = new Date(2015,11,25);
+  	var t = new Date("2015/12/25");
+  	t.setFullYear(2016);
+  	document.write(t);
+  	document.write(t.getDay()+"</br>");
+  	document.write(t.getDate()," 일"+"<br/>");
+  	document.write(t.getMonth() + 1 + " 월"+"<br/>");
+  	document.write(t.getHours() +" 시간"+"<br/>");
+  	document.write(t.getMinutes() + " 분" + "<br/>");
+  	document.write(t.getSeconds() + " 초" + "<br/>");
+  	document.write(t.getMilliseconds() + " msc" + "<br/>");
+  	document.write(t.getTime() + " 날짜 정보 10진수 (1970년도부터)" + "<br/>");
+     */
+    /*
+  	오늘부터 크리스마스까지 D-day를 구하시오
+  	
+
+  	var t = new Date();
+  	var c = new Date("2016/12/25");
+
+
+  	var d = (c.getTime() - t.getTime()) / 86400000;
+
+  	
+	
+  	document.write(d +"<br/>")
+	
+	*/
+    /*
+    var t = new Date();
+    //document.write(t.toGMTString());
+    document.write(t.toString());
+    */
+
+    /*
+	1월 1일 새해 인사를 경고창으로 띄우고
+	1월2일엔 나오지 않도록 하시오.
+    
+    var t = new Date();
+    var m = t.getMonth();
+    var d = t.getDate();
+    if (m == 0 && d == 1) {
+    	alert("1월1일 \n새해 복 많이 받어라");
+    };
+
+     */
+
+
+    /*
+     50부터 80까지 난수를 발생시키시오(출력은 정수만 나오도록 하시오)
+     Math.floor(Math.random()*(큰수-작은수+1)+50  <--공식
+    
+     var num = Math.floor(Math.random()*31)+50;
+     document.write(num);
+	 */
+    /*
+	var a = new String("web html css javascript design");
+	document.write(a.length);
+	*/
+
+    var a = "web html css javascript design";
+    //document.write(a.indexOf("e",2));
+    //document.write(a.lastIndexOf("e",24));
+    //document.write(a.charAt(10));
+
+    var num = 0;
+    for (var i = 0; i < a.length; i++) {
+        if (a.charAt(i) == " ") num++;
+    }
+    document.write(num);
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

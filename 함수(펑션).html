@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <style type="text/css">
+    #box {
+        background: skyblue;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        position: absolute;
+        left: 50%;
+        top: 200px;
+    }
+    </style>
+    <script type="text/javascript">
+    /*var num = 1;
+                      	function greeting() {
+                      		//alert("어서오세요");
+                      		num += 10;
+                      		console.log(num);
+                      }*/
+
+    var arrColor = ["pink", "purple", "yellow", "blue", "red", "aqua", "yellowgreen"];
+
+    //document.documentElement.style.backgroundColor = arrColor[0];
+
+
+    var i = -1;
+
+     function color_chg_r() {
+          i = Math.round(Math.random() * 6);
+          document.documentElement.style.backgroundColor = arrColor[i];
+          console.log(i);
+      }
+/*    function color_chg_prev() {
+        i--;
+        if (i < 0) {
+            i = 6;
+        }
+
+        document.documentElement.style.backgroundColor = arrColor[i];
+        console.log(i);
+
+    }
+
+    function color_chg_next() {
+        i++;
+        if (i > 6) {
+            i = 0;
+        }
+        document.documentElement.style.backgroundColor = arrColor[i];
+        console.log(i);
+    }*/
+
+    function color_chg(leftright) {
+        if (leftright == 'prev') {
+            i--;
+            if (i < 0) {
+                i = 6;
+            }
+        } else {
+            i++;
+            if (i > 6) {
+                i = 0;
+            }
+        }
+        document.documentElement.style.backgroundColor = arrColor[i];
+        console.log(i);
+    }
+
+
+
+    /* var m = 0;
+     function move_right() {
+     	m += 10;
+     	var box = document.getElementById("box");
+     	box.style.marginLeft = m +"px";
+     	console.log(m);
+     }
+     function move_left() {
+     	m -= 10;
+     	var box = document.getElementById("box");
+     	box.style.marginLeft = m +"px";
+     	console.log(m);
+     }*/
+    var m = 0;
+
+    function move_left_right(direct) {
+        if(direct == 'left') {
+        	if(m <= -550) return;
+        	m -= 10;
+        } else {
+			if(m >= 450) return;        	
+        	m += 10;
+        }
+
+        /*if(m < -550 ){
+        	m = -550;
+        	return;
+        } 
+        
+        console.log(m);
+        m = eval(m + direct + 50);*/
+         console.log(m);
+        var box = document.getElementById("box");
+        box.style.marginLeft = m + "px";
+        
+    }
+    </script>
+</head>
+
+<body>
+    <button onclick="color_chg('prev');">배경색 이전</button>
+    <button onclick="color_chg('next');">배경색 다음</button>
+    <button onclick="color_chg_r();"> 배경색 랜덤</button>
+    <div id="box"></div>
+    <!-- <button onclick="move_left_right('left');">왼쪽이동</button>
+    <button onclick="move_left_right('right');">오른쪽이동</button> -->
+    <button onclick="move_left_right('left');">왼쪽이동</button>
+    <button onclick="move_left_right('right');">오른쪽이동</button>
+    <!-- <button onclick="greeting();">인사말출력</button> -->
+</body>
+
+</html>

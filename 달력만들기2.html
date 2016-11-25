@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <style type="text/css">
+    th,td{text-align: center; border: 1px solid #000; width: 50px; height: 50px;}
+    th{width: 60px; height: 70px; background-color: pink;}
+    .table{border:1px solid #000; }
+    .blue {
+        color: blue;
+    }
+    
+    .yellow {
+        background-color: yellow;
+    }
+    
+    .pink {
+        background-color: pink;
+    }
+    
+    .red {
+        color: red;
+    }
+    
+    .bg_red {
+        background-color: red;
+        color: #fff;
+    }
+    </style>
+    <script type="text/javascript">
+    /*  var day = 1;
+                var t = "<table border=1>";
+
+                t += "<tbody>";
+                for (var i = 1; i <= 5; i++) {
+                    t += "<tr>";
+                    for (var k = 1; k <= 5; k++) {
+                        if (day == 13 ) {
+                            t += "<td class='pink'>"+ day + "</td>";
+                        } else if(day % 6 == 1){
+                            t += "<td class='blue'>" + day + "</td>";
+                        } else if(day % 4 == 1 ){
+                             t += "<td class='yellow'>" + day + "</td>";
+                        } else {
+                            t += "<td>" + day + "</td>";
+                        }
+                        day++
+                    }
+                    t += "</tr>";
+                }
+
+                t += "</tbody>";
+                t += "</table>";
+
+                document.write(t + "<br/>");*/
+
+    /*
+        1.이달의 마지막 일수 구하기
+        2. 1에 대한 요일 값 구하기
+        3. 이달에 필요한 행 구하기
+
+    */
+
+    var d = new Date();
+    var y = d.getFullYear(),
+        m = d.getMonth(), //1적게 나옴
+        dd = d.getDate();
+        h = d.getHours();
+        min = d.getMinutes();
+
+    var arrDate = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    if (y % 4 == 0 && y % 100 != 0 || y % 400 == 0) {
+        arrDate[1] = 29;
+    }
+    var lastDate = arrDate[m];
+
+    var first = new Date(y, m, 1);
+    var firstday = first.getDay();
+
+    var avg = (lastDate + firstday) / 7;
+    var row = Math.ceil(avg);
+
+    var t = "<table class='table'>";
+    var num = 1;
+    t += "<thead>";
+    t += "<tr>";
+    t += "<th class='red'>일</th>";
+    t += "<th>월</th>";
+    t += "<th>화</th>";
+    t += "<th>수</th>";
+    t += "<th>목</th>";
+    t += "<th>금</th>";
+    t += "<th class='blue'>토</th>";
+    t += "</tr>";
+    t += "</thead>";
+    t += "<tbody>"
+    for (var i = 1; i <= row; i++) {
+        t += "<tr>";
+        for (var k = 1; k <= 7; k++) {
+            if (i == 1 && k <= firstday || num > lastDate) {
+                t += "<td> </td>";
+            } else {
+                if (num == dd ) {
+                    t += "<td class='bg_red'>" + num + "</td>";
+
+                } else if (k == 7) {
+                    t += "<td class='blue'>" + num + "</td>";
+
+                } else if (k == 1) {
+                    t += "<td class='red'>" + num + "</td>";
+                } else {
+                    t += "<td>" + num + "</td>";
+                }
+                num++
+            }
+        }
+        t += "</tr>";
+    }
+    t += "</tbody>";
+    t += "</table>";
+
+
+    document.write(y+ " 년 ");
+    document.write(m+1 + " 월 ");
+    document.write(dd +" 일 ");
+    document.write(h +" 시 ");
+    document.write(min +" 분 ");
+    document.write(t);
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

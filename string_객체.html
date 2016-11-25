@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SiteName|PageName</title>
+  <script type="text/javascript">
+  /*
+  	var t = "Html Javascript photoshop"
+  	document.write(t.toUpperCase()+"<br/>");
+  	document.write(t.toLowerCase()+"<br/>");
+  */
+  //document.write(navigator.userAgent.toLowerCase());
+
+ /* var a = navigator.userAgent.toLowerCase();
+  document.write(a.replace("windows","이성룡천재")
+  	.replace("chrome","인정"));
+
+
+ 
+  if(a.indexOf("windows") >= 0){
+  	document.write("윈도우 사용자이군요");
+  } */
+
+  /*
+  var t = "Html Javascript photoshop"
+  document.write(t.substring(5,15)+"<br/>")
+  document.write(t.substring(16)+"<br/>")
+  */
+
+  var fileName = "images/main/gnb.jpg?num1=10&num2=20";
+  /*
+  var idxDot = fileName.lastIndexOf(".");
+  var m = fileName.substring(idxDot+1);
+  if(m != "jpg" && m != "png" && m && "gif" ) {
+  	alert("이미지파일만 올려라");
+  }
+  */
+
+  var idx_1 = fileName.indexOf("=",fileName.indexOf("num1"));
+  document.write(fileName.substring(idx_1+1, idx_1+3));
+
+ 
+
+    
+
+
+    </script>
+ </head>
+ <body>
+  
+ </body>
+</html>
