@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <script type="text/javascript">
+    var h1;
+
+    function init() {
+        h1 = document.getElementById("tit_1");
+    }
+
+    function frmReset() {
+        //alert(9999);
+        return confirm("정말로 취소할꺼냥?");
+    }
+
+    function frmSubmit(obj) {
+        var myagree = obj.chk_agree;
+        if (myagree.checked == false) {
+        	alert("약관에 반드시 동의하여라");
+        	myagree.focus();
+            return false;
+        }
+    }
+    </script>
+</head>
+
+<body onload="init();" onunload="alert('안녕히가세요')">
+    <h1 id="tit_1">환영합니다</h1>
+    <p>
+        <button ondblclick="alert('더블클릭')">버튼1</button>
+    </p>
+    <p>
+        <button onmouseover="this.style.backgroundColor='red';" onfocus="this.style.backgroundColor='blue';">버튼2</button>
+    </p>
+    <p>
+        <button onmouseout="this.style.border='2px solid green';" onblur="this.style.border='2px solid red';">버튼3</button>
+    </p>
+    <form action="#" onsubmit="return frmSubmit(this);" onreset="return frmReset();">
+        <fieldset>
+            <legend>회원가입</legend>
+            <p>
+                <label for="user_id">
+                    <input type="text" name="user_id" id="user_id">
+                </label>
+            </p>
+            <p>
+                <input type="checkbox" name="chk_agree" id="chk_agree">
+                <label for="chk_agree">약관에 동의합니다</label>
+            </p>
+            <P>
+            	<select name="site" id="site" onchange="window.open('http://'+this.value);">
+            		<option value="www.naver.com">네이버</option>
+            		<option value="www.daum.net">다음</option>
+            		<option value="www.google.com">구글</option>
+            	</select>
+            </P>
+            <p>
+                <input type="submit" value="등록완료">
+                <input type="reset" value="취소">
+            </p>
+        </fieldset>
+    </form>
+</body>
+
+</html>
