@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <script type="text/javascript">
+    /*var i = 0;
+
+                            function mv() {
+                                console.log(i++);
+                            }*/
+    /* function init() {
+     	alert(1213);
+     }
+     window.onload = init;*/
+    var f;
+    window.onload = function() {
+        /*f = document.getElementById("my_f");*/
+        f = document.querySelector("#my_f"); //<-- 익스8부터 되는 선택자 쿼리셀렉터 클래스도 가능
+
+
+        /* f.onsubmit = function() {
+         	alert(1213);
+         }*/
+
+
+        /*var test = function() {	<-익명함수 사용 3개 방법 (이벤트핸들러)
+        }*/
+
+
+        /*function test() {
+        	alert(121333);
+        	return false;   //<--창에 겟방식 안보이게
+        }*/
+
+        //선생님 방식
+        function checkResult(m1, m2, m3) {
+            if (m1 == null) {
+                alert(m2);
+                m3.value = "";
+                m3.focus();
+                return false;
+            }
+        }
+        function test() {
+            var k;
+            var name = this.user_name; //<--input에 네임
+            var regName = /^[가-힣]{2,5}$/g; //<--유효성객체
+            var result = regName.exec(name.value);
+            k = checkResult(result, '한글2~5글자 입력하시오', name);
+            if (k == false) {
+                return false;
+            }
+
+            var name2 = this.user_phone;
+            var regPhone = /^(010|011|016|019|017)-\d{3,4}-\d{4}$/g;
+            var result2 = regPhone.exec(name2.value);
+            k = checkResult(result2, "'ex. 010-1234-5678'방식으로 입력하시오", name2);
+
+            if (k == false) {
+                return false;
+            }
+            var agree = this.agree;
+            if (agree.checked == false) {
+                checkResult(null, "반드시 동의해야합니다", agree);
+                return false;
+            }
+        }
+        f.onsubmit = test;        
+    }
+
+    /*  //내방식
+        function test() {
+            var name = this.user_name; //<--input에 네임
+            var regName = /^[가-힣]{2,5}$/g; //<--유효성객체
+            var result = regName.exec(name.value);
+
+            var name2 = this.user_phone;
+            var regPhone = /^(010|011|016|019|017)-\d{3,4}-\d{4}$/g;
+            var result2 = regPhone.exec(name2.value);
+
+            if (result == null) {
+                alert('한글2~5글자 입력하시오');
+                name.value = "";
+                name.focus();
+                return false;
+            } else if (result2 == null) {
+                alert("'ex. 010-1234-5678'방식으로 입력하시오");
+                name2.value = "";
+                name2.focus();
+                return false;
+            }
+        }
+        f.onsubmit = test;
+    }*/
+    </script>
+</head>
+<!-- <body onmousemove="mv();"> -->
+<!-- <body onresize="mv();"> -->
+
+<body>
+    <!-- <input type="text" name="user_name" id="user_name">
+    <br/>
+    <input type="text" name="user_id" id="user_id">
+    <img src="imges/logo.gif" onerror="alert('이미지가없다');"> -->
+    <form action="#" id="my_f">
+        <p>
+            <label for="user_name">이름</label>
+            <input type="text" name="user_name" id="user_name">
+        </p>
+        <p>
+            <label for="user_phone">핸드폰</label>
+            <input type="text" name="user_phone" id="user_phone">(ex. 010-1234-5678)</p>
+        <p>
+            <input type="checkbox" name="agree" id="agree">
+            <label for="agree">동의하십니까?</label>
+        </p>
+        <p>
+            <input type="submit" value="등록완료">
+            <input type="reset" value="취소">
+        </p>
+    </form>
+</body>
+
+</html>

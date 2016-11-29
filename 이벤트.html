@@ -23,8 +23,8 @@
     function frmSubmit(obj) {
         var myagree = obj.chk_agree;
         if (myagree.checked == false) {
-        	alert("약관에 반드시 동의하여라");
-        	myagree.focus();
+            alert("약관에 반드시 동의하여라");
+            myagree.focus();
             return false;
         }
     }
@@ -55,11 +55,11 @@
                 <label for="chk_agree">약관에 동의합니다</label>
             </p>
             <P>
-            	<select name="site" id="site" onchange="window.open('http://'+this.value);">
-            		<option value="www.naver.com">네이버</option>
-            		<option value="www.daum.net">다음</option>
-            		<option value="www.google.com">구글</option>
-            	</select>
+                <select name="site" id="site" onchange="window.open('http://'+this.value);">
+                    <option value="www.naver.com">네이버</option>
+                    <option value="www.daum.net">다음</option>
+                    <option value="www.google.com">구글</option>
+                </select>
             </P>
             <p>
                 <input type="submit" value="등록완료">
