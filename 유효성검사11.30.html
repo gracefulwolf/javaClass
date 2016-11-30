@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <script type="text/javascript">
+    //   \w 소문자는  특수기호 빼고 다   /W  대문자는 특수기호
+    window.onload = function() {
+        var member_f = document.querySelector("#member_f");
+
+        function regMessage(m1, m2) {
+            alert(m1);
+            m2.value = "";
+            m2.focus();
+        }
+
+        var chkMember = function(e) { //객체에는 속성과 매서드가 들어있음 
+            //this.submit();  //강제로 넘기는 수   this = form
+            //return false;
+            e.preventDefault(); // return false 랑 같은 역활
+            var ts = this;
+
+            var user_id = ts.user_id;
+            var reg_id = /^[a-z]{1}\w{4,15}$/g;
+            var result_id = reg_id.exec(user_id.value);
+            if (result_id == null) {
+                regMessage("ID를 다시 입력하시오", user_id);
+                return false;
+
+            }
+            var user_email = ts.user_email;
+            var reg_email = /^[a-z]{1}\w{4,12}@\w+[.](com||net||co.kr||org||go.kr||or.kr)$/g;
+            var result_email = reg_email.exec(user_email.value);
+            if (result_email == null) {
+                regMessage("이메일을 다시 입력하시오", user_email);
+                return false;
+            }
+            var user_pw = ts.user_pw;
+            var reg_pw = /^\w{7,11}[!-/||:-@||[-`||~]{1}$/g;
+            var result_pw = reg_pw.exec(user_pw.value);
+            if (result_pw == null) {
+                regMessage("비밀번호를 다시 입력하시오\n마지막엔 특수문자를 꼭 넣어주세요", user_pw);
+                return false;
+            }
+            var user_url = ts.user_url;
+            var reg_url = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/ig;
+            var result_url = reg_url.exec(user_url.value);
+            if(result_url == null) {
+            	regMessage("url 주소를 다시 입력하세요",user_url);
+            	return false;
+            }
+            ts.submit();
+        }
+        member_f.onsubmit = chkMember;
+    }
+    </script>
+</head>
+
+<body>
+    <form action="#" method="get" id="member_f">
+        <p>
+            <label for="user_id">아이디</label>
+            <input type="text" name="user_id" id="user_id" value="abcd1234">
+        </p>
+        <p>
+            <label for="user_email">이메일</label>
+            <input type="text" name="user_email" id="user_email" value="chyopa88@naver.com">
+        </p>
+        <p>
+            <laber for="user_pw">비밀번호</laber>
+            <input type="password" name="user_pw" id="user_pw" value="abc1234!">
+        </p>
+        <p>
+            <label for="user_url">URL</label>
+            <input type="text" name="user_url" id="user_url" value="http://www.naver.com"> 
+        </p>
+        <p>
+            <input type="submit" value="등록완료">
+        </p>
+    </form>
+</body>
+
+</html>
