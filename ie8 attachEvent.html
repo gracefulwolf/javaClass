@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <script type="text/javascript">
+
+    function addEvnt(obj, eventName, eventHande) {
+        if (document.addEventListener) { // 익스 9이상, 나머지 사요가능
+            obj.addEventListener(eventName, eventHande);
+        } else { //attachEvent()  == 익스8에서 사용가능
+            obj.attachEvent("on" + eventName, eventHande);
+        }
+    }
+
+    window.onload = function() {
+        var btn1 = document.querySelector('#btn1');
+        /* btn1.onclick = function() {
+         	alert("헬로우");
+         }*/ //이벤트명
+        var f1 = function() {
+            alert("헬로우");
+        }
+        var f2 = function() {
+            alert("웰컴");
+        }
+        addEvnt(btn1, "click", f1);
+        addEvnt(btn1, "click", f2);
+    }
+    </script>
+</head>
+
+<body>
+    <button id="btn1">버튼</button>
+</body>
+
+</html>
