@@ -8,77 +8,92 @@
     <meta name="Description" content="">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SiteName|PageName</title>
+    <style type="text/css">
+    	#calendarWrap table {width: 200px; background-color: yellow;}
+    </style>
     <script type="text/javascript">
-	    var t = new Date();
-	    /*
-	    	*@이벤트 등록 메서드
-		    *@obj {object} 이벤트대상
-		    *@eventName {string} 이벤트네임
-		    *@eventH {function} 이벤트 핸들러
-	     */
-	    function addEvnt(obj,eventName,eventH) {
-	    	if(document.addEventListener) {
-	    		obj.addEventListener(eventName,eventH);
-	    	} else {
-	    		obj.attachEvent("on" + eventName,eventH);
-	    	}
-	    }
+    var t = new Date();
+    /*
+     *@이벤트 등록 메서드
+     *@obj {object} 이벤트대상
+     *@eventName {string} 이벤트네임
+     *@eventH {function} 이벤트 핸들러
+     */
+    function addEvnt(obj, eventName, eventH) {
+        if (document.addEventListener) {
+            obj.addEventListener(eventName, eventH);
+        } else {
+            obj.attachEvent("on" + eventName, eventH);
+        }
+    }
 
-	    function makeCalendar() {
-	        var calendar_table = document.querySelector(".calendar_table");
+    function makeCalendar() {
+        var calendar_table = document.querySelector(".calendar_table");
 
-	        var thisyear = t.getFullYear();
-	        var thismonth = t.getMonth();
-	        var thisdate = t.getDate();
+        var thisyear = t.getFullYear();
+        var thismonth = t.getMonth();
+        var thisdate = t.getDate();
 
-	        var num = 1;
-	        var tb ="<table border='1'>";
-	        	tb += "<thead>";
-	        	tb += "<tr>";
-	        	tb += "<th>일</th>";
-	        	tb += "<th>월</th>";
-	        	tb += "<th>화</th>";
-	        	tb += "<th>수</th>";
-	        	tb += "<th>목</th>";
-	        	tb += "<th>금</th>";
-	        	tb += "<th>토</th>";
-	        	tb += "</tr>";
-	        	tb += "</thead>";
-	        	tb += "<tbody>";
-	        		for(i = 1; i <= 5; i++) { //행
-	        			tb += "<tr>";
-	        			for(k = 1; k <= 7 ; k++) { //열
-	        				
-	        				tb += "<td>"+ num + "</td>";
-	        				num++;
-	        			}
-	        			tb += "</tr>";
-	        		}
-	        	tb += "</tbody>";
-	        	tb += "</table>";
+        var arrDate = [31,28,31,30,31,30,31,31,30,31,30,31];
+        if(thisyear % 4 == 0 && thisyear % 100 != 0 || thisyear % 400 == 0 ){
+        	arrDate[1] = 29;
+        }
 
-	        var calendar_info = document.querySelector(".calendar_info");
-	        calendar_info.innerHTML = thisyear+"."+(thismonth+1);
+        var lastdate = arrDate[thismonth];
+        var firstobj =  new Date(thisyear,thismonth,1);
+        var yoil = firstobj.getDay();
+        var row = Math.ceil((yoil+lastdate) / 7) ;
+        var num = 1;
+        var tb = "<table border='1'>";
+        tb += "<thead>";
+        tb += "<tr>";
+        tb += "<th>일</th>";
+        tb += "<th>월</th>";
+        tb += "<th>화</th>";
+        tb += "<th>수</th>";
+        tb += "<th>목</th>";
+        tb += "<th>금</th>";
+        tb += "<th>토</th>";
+        tb += "</tr>";
+        tb += "</thead>";
+        tb += "<tbody>";
+        for (i = 1; i <= row ; i++) { //행
+            tb += "<tr>";
+            for (k = 1; k <= 7; k++) { //열
+                if (i == 1 && k <= yoil || num > lastdate) {
+                	tb += "<td> </td>";
+                } else {
+                    tb += "<td>" + num + "</td>";
+                    num++;
+                }
+            }
+            tb += "</tr>";
+        }
+        tb += "</tbody>";
+        tb += "</table>";
 
-	        calendar_table.innerHTML = tb;
-	    }
-	    var init_calendar = function() {
-	    	makeCalendar();
-	    	var btn_next = document.querySelector(".btn_next");
-	    	var btn_prev = document.querySelector(".btn_prev");
-	    	var nextMonth = function() {
-	    		t.setMonth(t.getMonth()+1);
-	    		makeCalendar();
+        var calendar_info = document.querySelector(".calendar_info");
+        calendar_info.innerHTML = thisyear + "." + (thismonth + 1);
 
-	    	}
-	    	var prevMonth = function() {
-	    		t.setMonth(t.getMonth()-1);
-	    		makeCalendar();
-	    	}
-	    	addEvnt(btn_next,"click",nextMonth);
-	    	addEvnt(btn_prev,"click",prevMonth);
-	    }
-	    addEvnt(window,"load",init_calendar);
+        calendar_table.innerHTML = tb;
+    }
+    var init_calendar = function() {
+        makeCalendar();
+        var btn_next = document.querySelector(".btn_next");
+        var btn_prev = document.querySelector(".btn_prev");
+        var nextMonth = function() {
+            t.setMonth(t.getMonth() + 1);
+            makeCalendar();
+
+        }
+        var prevMonth = function() {
+            t.setMonth(t.getMonth() - 1);
+            makeCalendar();
+        }
+        addEvnt(btn_next, "click", nextMonth);
+        addEvnt(btn_prev, "click", prevMonth);
+    }
+    addEvnt(window, "load", init_calendar);
     </script>
 </head>
 
