@@ -11,7 +11,7 @@
     <script type="text/javascript">
 
     function addEvnt(obj, eventName, eventHande) {
-        if (document.addEventListener) { // 익스 9이상, 나머지 사요가능
+        if (document.addEventListener) { // 익스 9이상, 나머지 사용가능
             obj.addEventListener(eventName, eventHande);
         } else { //attachEvent()  == 익스8에서 사용가능
             obj.attachEvent("on" + eventName, eventHande);
