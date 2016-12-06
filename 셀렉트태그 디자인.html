@@ -9,16 +9,56 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SiteName|PageName</title>
     <style type="text/css">
-    	* {margin:0; padding:0;}
-    	.select_box{position: relative; display: inline-block;}
-    	.select_box>button:first-child{ width: 120px; height: 30px; background-color: pink; border: 1px solid #aaa; }
-    	.select_box>button:first-child:after { content: "▼"; position: absolute; top: 8px; right: 5px; }
-    	.select_box ul{text-align: center; border: 1px solid #aaa; display: none;}
-    	.select_box ul li {height: 35px; border-top: 1px solid #efefef;}
-    	.select_box ul input{height: 100%; width: 100%; background-color: none; border: none;}
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .select_box {
+        position: relative;
+        display: inline-block;
+    }
+    
+    .select_box>button:first-child {
+        width: 120px;
+        height: 30px;
+        background-color: pink;
+        border: 1px solid #aaa;
+    }
+    
+    .select_box>button:first-child:after {
+        content: "▼";
+        position: absolute;
+        top: 8px;
+        right: 5px;
+    }
+    
+    .select_box ul {
+        text-align: center;
+        border: 1px solid #aaa;
+        display: none;
+    }
+    
+    .select_box ul li {
+        height: 35px;
+        border-top: 1px solid #efefef;
+    }
+    
+    .select_box ul input {
+        height: 100%;
+        width: 100%;
+        background-color: none;
+        border: none;
+    }
+    
+    .submit {
+        position: absolute;
+        top: 46px;
+        left: 127px;
+    }
     </style>
     <script type="text/javascript">
-    	/*
+    /*
      *@addEvent(evObj,evName,evH) : 이벤트 등록 메서드
      *@evObj (object) : 이벤트 대상
      *@evName (string) : 이벤트 네임
@@ -34,54 +74,99 @@
     }
     //var sNum = 0;
     var sNum = false;
+
     function showHide(e) {
-    	/*if(sNum == 0){
-    		sNum = 1;
-    	}else {
-    		sNum = 0;
-    	}*/
-    	e.preventDefault();
-    	var myList = document.querySelector(".select_box ul");
-    	sNum = !sNum;
+        /*if(sNum == 0){
+            sNum = 1;
+        }else {
+            sNum = 0;
+        }*/
+        e.preventDefault();
+        var myList = document.querySelector(".select_box ul");
+        sNum = !sNum;
 
-    	if(sNum) {
-    		myList.style.display = "block";
-    	} else {
-    		myList.style.display = "none";
-    	}
+        if (sNum) {
+            myList.style.display = "block";
+        } else {
+            myList.style.display = "none";
+        }
 
+    }
+    var chk_btn = function() {
+        var btn_value = this.value;
+        document.querySelector(".btn_sel").innerHTML = btn_value;
+        var myList = document.querySelector(".select_box ul");
+        myList.style.display = "none";
+        sNum = false;
+
+
+        var rel_site = document.querySelector("#rel_site");
+        rel_site.value = btn_value;
+    }
+    var optNum = -1;
+    var chsel = function(e) {
+        var btns = document.querySelectorAll(".select_box input[type=button]");
+        var btn_sel = document.querySelector(".btn_sel");
+        /* console.log(e.keyCode);   // 방향키 위는  38= 감소,  방향키 아래는 40 = 증가*/
+        if (e.keyCode == 40) {
+            if(optNum >= 3) return false;
+            optNum++;
+        } else if (e.keyCode == 38) {
+            if(optNum <= 0) return false;
+            optNum--;
+        }
+        if(optNum >= 0 ) { 
+            btn_sel.innerHTML = btns[optNum].value;
+            var rel_site = document.querySelector("#rel_site");
+            rel_site.value = btns[optNum].value;
+        }
     }
 
     var init = function() {
-    	var btn_sel = document.querySelector(".btn_sel");
-    	addEvent(btn_sel,"click",showHide)
+        var btn_sel = document.querySelector(".btn_sel");
+        addEvent(btn_sel, "click", showHide);
+        addEvent(btn_sel, "keydown", chsel);
+
+        var btn_listArr = document.querySelectorAll(".select_box input[type=button]");
+        btn_listArr.forEach(function(obj) {
+            addEvent(obj, "click", chk_btn);
+        });
     }
 
-	addEvent(window, "load", init);
+    addEvent(window, "load", init);
     </script>
 </head>
 
 <body>
-	<h1>셀렉트</h1>
-	<form action="#">
-		<!-- <select name="rel_site" id="rel_site">
-			<option value="www.naver.com">네이버</option>
-			<option value="www.daum.net">다음</option>
-			<option value="www.google.com">구글</option>
-			<option value="www.nate.com">네이트</option>
-		</select>
-		<input type="submit" value="전송"> -->
-		<div class="select_box">
-			<button class="btn_sel">사이트선택</button>
-			<ul>
-				<li><input type="button" value="네이버" data-opt-value="www.naver.com"></li>
-				<li><input type="button" value="다음" data-opt-value="www.daum.net"></li>
-				<li><input type="button" value="구글" data-opt-value="www.google.com"></li>
-				<li><input type="button" value="네이트" data-opt-value="www.nate.com"></li>
-			</ul>
-		</div>
-		<input type="submit" value="전송">
-	</form>
+    <h1>셀렉트</h1>
+    <form action="#">
+        <!-- <select name="rel_site" id="rel_site">
+            <option value="www.naver.com">네이버</option>
+            <option value="www.daum.net">다음</option>
+            <option value="www.google.com">구글</option>
+            <option value="www.nate.com">네이트</option>
+        </select>
+        <input type="submit" value="전송"> -->
+        <div class="select_box">
+            <button class="btn_sel">사이트선택</button>
+            <ul>
+                <li>
+                    <input type="button" value="네이버" data-opt-value="www.naver.com">
+                </li>
+                <li>
+                    <input type="button" value="다음" data-opt-value="www.daum.net">
+                </li>
+                <li>
+                    <input type="button" value="구글" data-opt-value="www.google.com">
+                </li>
+                <li>
+                    <input type="button" value="네이트" data-opt-value="www.nate.com">
+                </li>
+            </ul>
+        </div>
+        <input type="hidden" name="rel_site" id="rel_site" />
+        <input class="submit" type="submit" value="전송">
+    </form>
 </body>
 
 </html>
