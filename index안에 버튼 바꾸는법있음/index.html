@@ -51,12 +51,12 @@
 
         var result_id = reg_id.exec(inp_id.value);
         var result_pw = reg_pw.exec(inp_pw.value);
-        if(result_id == null || result_pw == null) {
-            if(result_id == null){
+        if (result_id == null || result_pw == null) {
+            if (result_id == null) {
                 alert('아이디 잘못입력됬습니다');
                 inp_id.value = "";
                 inp_id.focus();
-            }else if(result_pw == null) {
+            } else if (result_pw == null) {
                 alert('비밀번호 잘못입력됬습니다');
                 inp_pw.value = "";
                 inp_pw.focus();
@@ -79,8 +79,14 @@
         }
         login.submit();
     }
+    var goHref = function() {
+        var rel_site = document.querySelector("#rel_site");
+        window.open(rel_site.value);
+    }
 
     var init = function() {
+        var btn_rel_site = document.querySelector(".btn_rel_site");
+        addEvent(btn_rel_site, "click", goHref)
         var login = document.querySelector("#login");
         addEvent(login, "submit", loginStart);
 
@@ -293,7 +299,7 @@
                                         <option value="http://www.google.com">구글</option>
                                         <option value="http://www.yahoo.co.jp">야후재팬</option>
                                     </select>
-                                    <input type="image" src="images/main/btn_go.gif" alt="관련사이트 이동" />
+                                    <input type="image" src="images/main/btn_go.gif" class="btn_rel_site" alt="관련사이트 이동" />
                                 </p>
                             </section>
                         </div>
