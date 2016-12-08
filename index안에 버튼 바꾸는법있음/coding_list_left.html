@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SiteName|PageName</title>
+  <link rel="stylesheet" type="text/css" href="css/common.css">
+  <style type="text/css">
+
+  	@font-face {
+      font-family: 'fontello';
+      src: url('./font/fontello.eot?93568805');
+      src: url('./font/fontello.eot?93568805#iefix') format('embedded-opentype'),
+           url('./font/fontello.woff?93568805') format('woff'),
+           url('./font/fontello.ttf?93568805') format('truetype'),
+           url('./font/fontello.svg?93568805#fontello') format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+    a[href$=".html"]:after{
+    	font-family:'fontello';
+    	content: "\e801";
+    	position: relative;
+    	left: 7px;
+    }
+    a[href="#"] {cursor: default; color: #aaa; }
+ 
+  	body{background:#cccaca;}
+  	.coding_lnb li{padding-left: 10px;  line-height: 25px;} 
+  	.coding_lnb label{cursor: pointer;}
+  	.coding_lnb input[type="checkbox"] {position: absolute; left: -9999px; }
+  	.coding_lnb > li >a, .coding_lnb > li > label{color: #000; font-weight: bold; font-size: 15px;}
+  	.coding_lnb label { color:#333;font-weight: bold; font-size: 13px; }
+  	.coding_lnb ul ul {display: none;}
+  	.coding_lnb input[type="checkbox"]:checked + ul{display: block;}
+  	.coding_lnb > li > input[type="checkbox"] + ul {display: none;}
+  	.coding_lnb > li > input[type="checkbox"]:checked + ul {display: block;}
+  	
+  </style>
+ </head>
+	<body>
+	    <ul class="coding_lnb">
+	        <li>
+	            <label for="gnb_common" target="coding_list_right">공통영역</label>
+	            <input type="checkbox" name="gnb_common" id="gnb_common">
+	            <ul>
+	                <li><a href="coding_header.html" target="coding_list_right">헤더영역</a></li>
+	                <li><a href="coding_quick.html" target="coding_list_right">퀵영역</a></li>
+	                <li><a href="coding_slogan.html" target="coding_list_right">슬로건영역</a></li>
+	                <li><a href="coding_footer.html" target="coding_list_right">푸터영역</a></li>
+	            </ul>
+	        </li>
+	        <li>
+	            <a href="index.html" target="coding_list_right">HOME</a>
+	            <ul>
+	                <li>
+	                    <label for="gnb_html" target="coding_list_right">HTML에 대해</label>
+	                    <input type="checkbox" name="gnb_html" id="gnb_html">
+	                    <ul>
+	                        <li><a href="html.html" target="coding_list_right">HTML5 소개</a></li>
+	                        <li><a href="#" target="coding_list_right">레퍼런스 소개</a></li>
+	                        <li><a href="#" target="coding_list_right">활용예제</a></li>
+	                    </ul>
+	                </li>
+	                <li>
+	                    <label for="gbn_css" target="coding_list_right">CSS에 대해</label>
+	                    <input type="checkbox" name="gbn_css" id="gbn_css" target="coding_list_right">
+	                    <ul>
+	                        <li><a href="html.html" target="coding_list_right">CSS 소개</a></li>
+	                        <li><a href="#" target="coding_list_right">레퍼런스 소개</a></li>
+	                        <li><a href="#" target="coding_list_right">활용예제</a></li>
+	                    </ul>
+	                </li>
+	                <li>
+	                    <label for="gnb_standard" target="coding_list_right">웹 표준</label>
+	                    <input type="checkbox" name="gnb_standard" id="gnb_standard">
+	                    <ul>
+	                        <li><a href="html.html" target="coding_list_right">웹 표준  소개</a></li>
+	                        <li><a href="#" target="coding_list_right">레퍼런스 소개</a></li>
+	                        <li><a href="#" target="coding_list_right">활용예제</a></li>
+	                    </ul>
+	                </li>
+	                <li>
+	                    <label for="gnb_access" target="coding_list_right">웹 접근성</label>
+	                    <input type="checkbox" name="gnb_access" id="gnb_access">
+	                    <ul>
+	                        <li><a href="html.html" target="coding_list_right">웹 접근성  소개</a></li>
+	                        <li><a href="#" target="coding_list_right">레퍼런스 소개</a></li>
+	                        <li><a href="#" target="coding_list_right">활용예제</a></li>
+	                    </ul>
+	                </li>
+	                <li>
+	                    <label for="gnb_qna" target="coding_list_right">묻고 답하기</label>
+	                    <input type="checkbox" name="gnb_qna" id="gnb_qna">
+	                    <ul>
+	                        <li><a href="qna.html" target="coding_list_right">묻고 답하기</a></li>
+	                        <li><a href="#" target="coding_list_right">FAQ</a></li>
+	                        <li><a href="#" target="coding_list_right">1:1 질문</a></li>
+	                    </ul>
+	                </li>
+	                <li>
+	                    <label for="gnb_pds" target="coding_list_right">자료실</label>
+	                    <input type="checkbox" name="gnb_pds" id="gnb_pds">
+	                    <ul>
+	                        <li><a href="pds.html" target="coding_list_right">이미지 자료</a></li>
+	                        <li><a href="#" target="coding_list_right">이미지 자료2</a></li>
+	                        <li><a href="#" target="coding_list_right">이미지 자료3</a></li>
+	                    </ul>
+	                </li>
+	                <li>
+	                    <label for="lnb_member" target="coding_list_right">회원가입</label>
+	                    <input type="checkbox" name="lnb_member" id="lnb_member">
+	                    <ul>
+	                        <li><a href="member.html" target="coding_list_right">회원가입</a></li>
+	                        <li><a href="#" target="coding_list_right">로그인</a></li>
+	                        <li><a href="#" target="coding_list_right">아이디 / 비밀번호 찾기</a></li>
+	                    </ul>
+	                </li>
+	            </ul>
+	        </li>
+	    </ul>
+	</body>
+
+
+</html>

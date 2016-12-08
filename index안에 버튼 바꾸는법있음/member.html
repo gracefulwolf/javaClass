@@ -1,0 +1,164 @@
+<? include "inc/top.html"; ?>
+    <title>웹카페 | 회원가입</title>
+    <!-- <link rel="stylesheet" href="css/member.css" media="all" /> -->
+    </head>
+
+    <body>
+        <!-- 랩영역 -->
+        <div id="wrap">
+            <!-- 헤더영역 -->
+            <? include "inc/header.html"; ?>
+                <!-- //헤더 영역 -->
+                <!-- 컨테이너영역 -->
+                <div id="container" class="clearfix">
+                    <div class="sub_contents_wrap clearfix">
+                        <div class="sub_left">
+                            <section class="lnb">
+                                <h2><img src="images/member/h2_member.gif" alt="회원가입" /></h2>
+                                <ul>
+                                    <li><a href="#" class="on">회원가입</a></li>
+                                    <li><a href="#">로그인</a></li>
+                                    <li><a href="#">ID/PW 찾기</a></li>
+                                </ul>
+                            </section>
+                            <section class="sub_keyword">
+                                <h3 class="blind">웹카페 단어 검색</h3>
+                                <form action="#" method="get">
+                                    <fieldset>
+                                        <legend>단어 검색</legend>
+                                        <input type="text" name="sub_sch_keyword" id="sub_sch_keyword" title="검색단어 입력" />
+                                        <input type="image" src="images/common/btn_search_sub.gif" alt="검색" />
+                                    </fieldset>
+                                </form>
+                            </section>
+                        </div>
+                        <section class="sub_contents">
+                            <h2><img src="images/member/h1_join.gif" alt="회원가입" /></h2>
+                            <p class="pos_status al_right">
+                                <a href="index.html">HOME</a> &gt;
+                                <strong>회원가입</strong>
+                            </p>
+                            <p class="required_tip"><img src="images/member/icon_check.gif" alt="필수입력"> 는 필수입력 항목입니다.</p>
+                            <div class="board_wrap">
+                                <form action="#" method="post">
+                                    <fieldset>
+                                        <legend>회원가입</legend>
+                                        <table class="basic_table_row_1">
+                                            <caption>회원가입</caption>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <label for="user_name"><img src="images/member/icon_check.gif" alt="필수입력">이름</label>
+                                                    </th>
+                                                    <td>
+                                                        <input type="text" name="user_name" id="user_name" class="frm_input_2">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <label for="user_id">
+                                                        <img src="images/member/icon_check.gif" alt="필수입력">사용자아이디</label>
+                                                    </th>
+                                                    <td>
+                                                        <input type="text" name="user_id" id="user_id" class="frm_input_2">
+                                                        <a href="#"><img src="images/member/btn_idckeck.gif" alt="중복확인"></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <label for="user_pw">
+                                                        <img src="images/member/icon_check.gif" alt="필수입력">패스워드</label>
+                                                    </th>
+                                                    <td>
+                                                        <input type="password" name="user_pw" id="user_pw" class="frm_input_2">
+                                                        <span>영문/숫자 4~10자 이내</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <label for="user_pw_confirm">
+                                                        <img src="images/member/icon_check.gif" alt="필수입력">패스워드확인</label>
+                                                    </th>
+                                                    <td>
+                                                        <input type="password" name="user_pw_confirm" id="user_pw_confirm" class="frm_input_2">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <label for="user_post_1">주소</label>
+                                                    </th>
+                                                    <td>
+                                                       <p>
+                                                           <input type="text" name="user_post_1" id="user_post_1" title="우편번호앞세자리" class="frm_input_1">
+                                                           -
+                                                           <input type="text" name="user_post_2" id="user_post_2" title="우편번호뒤세자리" class="frm_input_1">
+                                                           <a href="#"><img src="images/member/btn_addrckeck.gif" alt="우편번호찾기"></a>
+                                                       </p>
+                                                       <p>
+                                                           <input type="text" name="user_addr" id="user_addr" title="상세주소 입력" class="frm_input_3">
+                                                       </p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><label for="user_phone_1">전화번호</label></th>
+                                                    <td>
+                                                        <input type="text" name="user_phone_1" id="user_phone_1" title="지역번호" class="frm_input_1">
+                                                        -
+                                                        <input type="text" name="user_phone_2" id="user_phone_2" title="중간번호 3~4자리" class="frm_input_1">
+                                                        -
+                                                        <input type="text" name="user_phone_3" id="user_phone_3" title="끝번호 3~4자리" class="frm_input_1">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><label for="user_mobile_1">휴대폰</label></th>
+                                                    <td>
+                                                        <input type="text" name="user_mobile_1" id="user_mobile_1" title="통신사번호" class="frm_input_1">
+                                                        -
+                                                        <input type="text" name="user_mobile_2" id="user_mobile_2" title="중간번호 3~4자리" class="frm_input_1">
+                                                        -
+                                                        <input type="text" name="user_mobile_3" id="user_mobile_3" title="끝번호 3~4자리" class="frm_input_1">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><label for="user_email">
+                                                    <img src="images/member/icon_check.gif" alt="필수입력">이메일</label></th>
+                                                    <td><input type="email" name="user_email" id="user_email" placeholder="aaaa@naver.com" class="frm_input_3"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><label for="mailing_1">메일링리스트가입</label></th>
+                                                    <td>
+                                                        <p>메일링리스트를 가입하시면 webcafe뉴스를 받아보실 수 있습니다.</p>
+                                                        <p class="clearfix">
+                                                            <input type="radio" name="mailing" id="mailing_1" value="y" checked class="blind">
+                                                            <label for="mailing_1" class="switch_1"><span>예</span></label>
+                                                            
+                                                            <input type="radio" name="mailing" id="mailing_2" value="n" class="blind">
+                                                            <label for="mailing_2" class="switch_2"><span class="wsich_2_pa">아니요</span></label>
+                                                            
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <p class="al_center double_btn">
+                                            <input type="image" src="images/member/btn_join.gif" alt="회원가입"><input type="reset" value="cancel">
+                                        </p>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                    <? include "inc/quick.html"; ?>
+                </div>
+                <!-- //컨테이너영역 -->
+                <!-- 슬로건영역 -->
+                <? include "inc/slogan.html"; ?>
+                    <!-- //슬로건영역 -->
+        </div>
+        <!-- //랩영역 -->
+        <!-- 푸터영역 -->
+        <? include "inc/footer.html"; ?>
+            <!-- //푸터영역 -->
+    </body>
+
+    </html>

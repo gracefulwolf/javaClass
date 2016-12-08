@@ -1,0 +1,326 @@
+<? include "inc/top.html"; ?>
+    <title>웹카페</title>
+    <link rel="stylesheet" href="css/main.css" media="all" />
+    <script type="text/javascript">
+    function addEvent(evObj, evName, evH) {
+        if (document.addEventListener) {
+            evObj.addEventListener(evName, evH);
+        } else {
+            evObj.attachEvent("on" + evName, evH);
+        }
+    }
+    /* var loginStart = function() {
+         var user_id = this.user_id;
+         var user_idReq = /^([a-zA-Z](?:\_?[a-zA-Z\d]+)*)$/gm;
+         var user_id_result = user_idReq.exec(user_id.value);
+
+         var user_pw = this.user_pw;
+         var user_pwReq = /^[0-9]$/;
+         var user_pw_result = user_idReq.exec(user_pw.value);
+      
+         if (user_id_result == null && user_pw_result == null) {
+             alert("다시입력하시오");
+         } else {
+             alert("환영합니다" + user_id_result + "님");
+         }*/
+    function addEvent(evObj, evName, evH) {
+        if (document.addEventListener) {
+            evObj.addEventListener(evName, evH);
+        } else {
+            evObj.attachEvent("on" + evName, evH);
+        }
+    }
+
+
+
+    function loginAlt(a, b) {
+        alert("로그인정보가 일치하지 않습니다");
+        a.value = "";
+        b.value = "";
+        a.focus();
+    }
+    var loginStart = function(e) {
+        e.preventDefault();
+
+        var reg_id = /^[a-z]{1}\w{6,11}$/g;
+        var reg_pw = /^\w{6,12}$/g;
+        var id_1 = "gracefulwolf";
+        var pw_1 = "1234567";
+        var inp_id = login.user_id;
+        var inp_pw = login.user_pw;
+
+        var result_id = reg_id.exec(inp_id.value);
+        var result_pw = reg_pw.exec(inp_pw.value);
+        if(result_id == null || result_pw == null) {
+            if(result_id == null){
+                alert('아이디 잘못입력됬습니다');
+                inp_id.value = "";
+                inp_id.focus();
+            }else if(result_pw == null) {
+                alert('비밀번호 잘못입력됬습니다');
+                inp_pw.value = "";
+                inp_pw.focus();
+            }
+            return false;
+        }
+
+
+        if (inp_id.value == id_1) {
+
+            if (inp_pw.value != pw_1) {
+                loginAlt(inp_id, inp_pw);
+                return false;
+            } else {
+
+            }
+        } else {
+            loginAlt(inp_id, inp_pw);
+            return false;
+        }
+        login.submit();
+    }
+
+    var init = function() {
+        var login = document.querySelector("#login");
+        addEvent(login, "submit", loginStart);
+
+        var btn_tab = document.querySelectorAll(".main_notice_wrap h4 button");
+        var arrImgurl = [];
+        arrImgurl[0] = "images/main/tab_notice_ov.gif";
+        arrImgurl[1] = "images/main/tab_pds.gif";
+        var active = btn_tab[0];
+
+        for (var i = 0; i < btn_tab.length; i++) {
+            //addEvent(btn_tab[i],"click",tabmenu);
+            (function() {
+                var num = i;
+                addEvent(btn_tab[i], "click", function() {
+                    var notice = document.querySelector(".main_notice_wrap ");
+                    var notice_div = notice.querySelectorAll("div");
+                    for (var i = 0; i < notice_div.length; i++) {
+                        if (i == num) {
+                            notice_div[i].style.display = "block";
+                            /*if (arrImgurl[i].indexOf("_ov.gif") < 0) {
+                                var newUrl = arrImgurl[i].replace(".gif", "_ov.gif")
+                                btn_tab[i].style.backgroundImage = "url(" + newUrl + ")";
+                                arrImgurl[i] = newUrl;
+                            }*/
+                            btn_tab[i].setAttribute("class", "on");
+                        } else {
+                            notice_div[i].style.display = "none";
+                            btn_tab[i].setAttribute("class", "off");
+                            /*var newUrl = arrImgurl[i].replace("_ov.gif", ".gif")
+                            btn_tab[i].style.backgroundImage = "url(" + newUrl + ")";
+                            arrImgurl[i] = newUrl;*/
+                        }
+                    }
+                });
+            }());
+        }
+    }
+
+
+
+    addEvent(window, "load", init);
+    </script>
+    </head>
+
+    <body>
+        <!-- 랩영역 -->
+        <div id="wrap">
+            <!-- 헤더영역 -->
+            <? include "inc/header.html"; ?>
+                <!-- //헤더 영역 -->
+                <!-- 배너영역 -->
+                <div id="banner_wrap">
+                    <img src="images/main/main_visual.gif" alt="웹표준&amp;웹접근성" />
+                </div>
+                <!-- //배너영역 -->
+                <!-- 컨테이너영역 -->
+                <div id="container" class="clearfix">
+                    <!-- 컨테이너 레프트 -->
+                    <div id="con_left">
+                        <section class="login_wrap">
+                            <h3><img src="images/main/h3_login.gif" alt="로그인" /></h3>
+                            <form action="html.html" method="get" id="login">
+                                <fieldset>
+                                    <legend>회원 로그인</legend>
+                                    <p>
+                                        <label for="user_id"><img src="images/main/title_id.gif" alt="아이디" /></label>
+                                        <input type="text" name="user_id" id="user_id" maxlength="12" placeholder="아이디 입력" />
+                                    </p>
+                                    <p>
+                                        <label for="user_pw"><img src="images/main/title_pw.gif" alt="비밀번호" /></label>
+                                        <input type="password" name="user_pw" id="user_pw" maxlength="12" placeholder="비밀번호 입력" />
+                                    </p>
+                                    <p>
+                                        <input type="image" src="images/main/btn_login.gif" alt="로그인" />
+                                    </p>
+                                </fieldset>
+                            </form>
+                            <p>
+                                <a href="join.html">회원가입</a>
+                                <a href="#">아이디/비밀번호 찾기</a>
+                            </p>
+                        </section>
+                        <section class="banner_con_left">
+                            <h3 class="blind">배너목록</h3>
+                            <ul>
+                                <li>
+                                    <a href="http://validator.kldp.org/" target="_blank" title="새창 또는 새 탭으로 열기"><img src="images/main/btn_html.gif" alt="마크업 유효성 검사" /></a>
+                                </li>
+                                <li>
+                                    <a href="http://css-validator.kldp.org/" target="_blank" title="새창 또는 새 탭으로 열기"><img src="images/main/btn_css.gif" alt="CSS 유효성 검사" /></a>
+                                </li>
+                            </ul>
+                        </section>
+                        <section class="standard_wrap">
+                            <h3><img src="images/main/h3_standards.gif" alt="웹표준이란" /></h3>
+                            <dl>
+                                <dt><strong>웹표준이란?</strong></dt>
+                                <dd>W3C 단체에서 규정한 웹 기술 사양에 대한 규칙을 말하며 표준규격...</dd>
+                            </dl>
+                        </section>
+                    </div>
+                    <!-- //컨테이너 레프트 -->
+                    <!-- 컨테이너 센터 -->
+                    <div id="con_center">
+                        <form action="#" method="get">
+                            <fieldset>
+                                <legend>웹카페 자료검색</legend>
+                                <label for="main_sch_ref"><img src="images/common/title_search.gif" alt="자료검색" /></label>
+                                <input type="text" name="main_sch_ref" id="main_sch_ref" />
+                                <input type="image" src="images/common/btn_search.gif" alt="검색" />
+                            </fieldset>
+                        </form>
+                        <section class="main_notice_wrap">
+                            <h3 class="blind">공지사항 및 자료실 탭메뉴</h3>
+                            <h4 class="tab_btn_1"><button class="on">공지사항</button></h4>
+                            <div>
+                                <ul>
+                                    <li>
+                                        <a href="#">공지사항 관련 내용1</a>
+                                        <time datetime="2016-11-02">2016.11.2</time>
+                                    </li>
+                                    <li>
+                                        <a href="#">공지사항 관련 내용2</a>
+                                        <time datetime="2016-11-02">2016.11.2</time>
+                                    </li>
+                                    <li>
+                                        <a href="#">공지사항 관련 내용3</a>
+                                        <time datetime="2016-11-02">2016.11.2</time>
+                                    </li>
+                                    <li>
+                                        <a href="#">공지사항 관련 내용4</a>
+                                        <time datetime="2016-11-02">2016.11.2</time>
+                                    </li>
+                                    <li>
+                                        <a href="#">공지사항 관련 내용5</a>
+                                        <time datetime="2016-11-02">2016.11.2</time>
+                                    </li>
+                                </ul>
+                                <p class="btn_more">
+                                    <a href="#"><img src="images/main/icon_more.gif" alt="공지사항 더보기" /></a>
+                                </p>
+                            </div>
+                            <h4 class="tab_btn_2"><button >자료실</button></h4>
+                            <div>
+                                <ul>
+                                    <li>
+                                        <a href="#">자료실 관련 내용1</a>
+                                        <time datetime="2016-11-02">2016.11.2</time>
+                                    </li>
+                                    <li>
+                                        <a href="#">자료실 관련 내용2</a>
+                                        <time datetime="2016-11-02">2016.11.2</time>
+                                    </li>
+                                    <li>
+                                        <a href="#">자료실 관련 내용3</a>
+                                        <time datetime="2016-11-02">2016.11.2</time>
+                                    </li>
+                                    <li>
+                                        <a href="#">자료실 관련 내용4</a>
+                                        <time datetime="2016-11-02">2016.11.2</time>
+                                    </li>
+                                    <li>
+                                        <a href="#">자료실 관련 내용5</a>
+                                        <time datetime="2016-11-02">2016.11.2</time>
+                                    </li>
+                                </ul>
+                                <p class="btn_more">
+                                    <a href="#"><img src="images/main/icon_more.gif" alt="자료실 더보기" /></a>
+                                </p>
+                            </div>
+                        </section>
+                        <section class="con_news_wrap clearFix">
+                            <h3><img src="images/main/h3_news.gif" alt="새소식" /></h3>
+                            <figure>
+                                <img src="images/main/img_112_66.gif" alt="W3C 리뉴얼" />
+                                <figcaption>W3C 리뉴얼</figcaption>
+                            </figure>
+                            <article>
+                                <header>
+                                    <h4>W3C사이트 리뉴얼되었습니다.</h4>
+                                    <time datetime="2016-11-02">2016.11.2</time>
+                                </header>
+                                <p>디자인 및 다양한 View 환경을 고려하여 구성되어 있으며, 기존보다 최신 정보 및 개발자를 위한 기술 가이드도 찾기 쉽...</p>
+                                <p class="btn_more">
+                                    <a href="#"><img src="images/main/icon_more.gif" alt="새소식 더보기" /></a>
+                                </p>
+                            </article>
+                        </section>
+                    </div>
+                    <!-- //컨테이너 센터 -->
+                    <!-- 컨테이너 라이트 -->
+                    <div id="con_right">
+                        <div id="event_wrap">
+                            <section>
+                                <h3><img src="images/main/h3_event.gif" alt="신규 이벤트" /></h3>
+                                <figure>
+                                    <img src="images/main/event_img_1.gif" alt="이벤트1" />
+                                    <figcaption>오픈기념 이벤트 준비중!</figcaption>
+                                </figure>
+                                <p class="btn_ctrls">
+                                    <button>이전</button>
+                                    <button>다음</button>
+                                </p>
+                            </section>
+                            <section>
+                                <h3><img src="images/main/h3_relation.gif" alt="관련사이트" /></h3>
+                                <p>
+                                    <select name="rel_site" id="rel_site" title="관련사이트를 선택하세요.">
+                                        <option value="http://www.naver.com">네이년</option>
+                                        <option value="http://www.google.com">구글</option>
+                                        <option value="http://www.yahoo.co.jp">야후재팬</option>
+                                    </select>
+                                    <input type="image" src="images/main/btn_go.gif" alt="관련사이트 이동" />
+                                </p>
+                            </section>
+                        </div>
+                        <section class="fav_wrap">
+                            <h3><img src="images/main/h3_favorite.gif" alt="인기사이트" /></h3>
+                            <ol>
+                                <li><a href="#">W3C</a><img src="images/main/icon_up.gif" alt="상승" /></li>
+                                <li><a href="#">CSS ZEN GARDEN</a><img src="images/main/icon_down.gif" alt="하락" /></li>
+                                <li><a href="#">WEB STANDARDS</a><img src="images/main/icon_stop.gif" alt="보합" /></li>
+                                <li><a href="#">웹 접근성 연구소</a><img src="images/main/icon_up.gif" alt="상승" /></li>
+                            </ol>
+                            <p class="btn_more">
+                                <a href="#"><img src="images/main/icon_more.gif" alt="인기사이트 더보기" /></a>
+                            </p>
+                        </section>
+                    </div>
+                    <!-- 컨테이너 라이트 -->
+                </div>
+                <!-- //컨테이너영역 -->
+                <!-- 슬로건영역 -->
+                <? include "inc/slogan.html"; ?>
+                    <!-- //슬로건영역 -->
+        </div>
+        <!-- //랩영역 -->
+        <!-- 푸터영역 -->
+        <? include "inc/footer.html"; ?>
+            <!-- //푸터영역 -->
+    </body>
+
+    </html>
