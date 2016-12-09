@@ -3,35 +3,17 @@
     <link rel="stylesheet" href="css/main.css" media="all" />
     <script type="text/javascript">
     function addEvent(evObj, evName, evH) {
-        if (document.addEventListener) {
-            evObj.addEventListener(evName, evH);
-        } else {
-            evObj.attachEvent("on" + evName, evH);
+        var arrEvent = evName.split(" ");
+
+        for (var i = 0; i < arrEvent.length; i++) {
+            if (document.addEventListener) {
+                evObj.addEventListener(arrEvent[i], evH);
+            } else {
+                evObj.attachEvent("on" + arrEvent[i], evH);
+            }
         }
+
     }
-    /* var loginStart = function() {
-         var user_id = this.user_id;
-         var user_idReq = /^([a-zA-Z](?:\_?[a-zA-Z\d]+)*)$/gm;
-         var user_id_result = user_idReq.exec(user_id.value);
-
-         var user_pw = this.user_pw;
-         var user_pwReq = /^[0-9]$/;
-         var user_pw_result = user_idReq.exec(user_pw.value);
-      
-         if (user_id_result == null && user_pw_result == null) {
-             alert("다시입력하시오");
-         } else {
-             alert("환영합니다" + user_id_result + "님");
-         }*/
-    function addEvent(evObj, evName, evH) {
-        if (document.addEventListener) {
-            evObj.addEventListener(evName, evH);
-        } else {
-            evObj.attachEvent("on" + evName, evH);
-        }
-    }
-
-
 
     function loginAlt(a, b) {
         alert("로그인정보가 일치하지 않습니다");
@@ -83,8 +65,65 @@
         var rel_site = document.querySelector("#rel_site");
         window.open(rel_site.value);
     }
-
     var init = function() {
+        var eventArrBtn = document.querySelectorAll("#event_wrap .btn_ctrls button");
+        var evntNum = 0;
+        //자동 움직임 함수
+        var evntAutoPlay = function() {
+            evntNum++;
+            if (slide_li.length <= evntNum) {
+                evntNum = 0;
+            }
+            evntControlMargin(evntNum);
+        }
+        var evntSetItv = setInterval(evntAutoPlay, 3000); // setInterval() 이거는 window 같은 함수라서 지역함수를 못불러옴
+        // clearlinterval()   
+
+        var btnSlideEv = function() {
+            var direct = this.innerHTML;
+
+            if (direct == "다음") {
+                if (evntNum >= slide_li.length - 1) {
+
+                    return false;
+                }
+                evntNum++;
+            } else {
+                if (evntNum <= 0) {
+                    return false;
+                }
+                evntNum--;
+            }
+            console.log(evntNum);
+            evntControlMargin(evntNum);
+        }
+
+        for (var i = 0; i < eventArrBtn.length; i++) {
+            addEvent(eventArrBtn[i], "click", btnSlideEv)
+            addEvent(eventArrBtn[i], "mouseover focus", function() {
+                if (evntSetItv) {
+                    clearInterval(evntSetItv);
+                }
+            });
+
+            addEvent(eventArrBtn[i], "mouseout blur", function() {
+                if (evntSetItv) {
+                    clearInterval(evntSetItv);
+                }
+                evntSetItv = setInterval(evntAutoPlay, 3000);
+            });
+
+        }
+
+        var slide_li = document.querySelectorAll(".slide_event li");
+
+
+        function evntControlMargin(myNum) {
+            var evntUl = document.querySelector(".slide_event");
+            var evntWidth = 163;
+            evntUl.style.marginLeft = -evntWidth * myNum + "px";
+        }
+
         var btn_rel_site = document.querySelector(".btn_rel_site");
         addEvent(btn_rel_site, "click", goHref)
         var login = document.querySelector("#login");
@@ -124,9 +163,6 @@
             }());
         }
     }
-
-
-
     addEvent(window, "load", init);
     </script>
     </head>
@@ -282,10 +318,34 @@
                         <div id="event_wrap">
                             <section>
                                 <h3><img src="images/main/h3_event.gif" alt="신규 이벤트" /></h3>
-                                <figure>
-                                    <img src="images/main/event_img_1.gif" alt="이벤트1" />
-                                    <figcaption>오픈기념 이벤트 준비중!</figcaption>
-                                </figure>
+                                <div class="frame">
+                                    <ul class="slide_event">
+                                        <li>
+                                            <a href="#">
+                                                <figure>
+                                                    <img src="images/main/event_img_1.gif" alt="이벤트1" />
+                                                    <figcaption>오픈기념 이벤트 준비중!</figcaption>
+                                                </figure>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <figure>
+                                                    <img src="images/main/event_img_2.gif" alt="이벤트1" />
+                                                    <figcaption>보검이랑 세일 참여!</figcaption>
+                                                </figure>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <figure>
+                                                    <img src="images/main/event_img_3.gif" alt="이벤트1" />
+                                                    <figcaption>헤어스타일 공유~</figcaption>
+                                                </figure>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                                 <p class="btn_ctrls">
                                     <button>이전</button>
                                     <button>다음</button>
