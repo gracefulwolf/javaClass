@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    a {
+        text-decoration: none;
+        color: #333;
+    }
+    
+    #slideBanner {
+        width: 400px;
+        border: 1px solid #cfcfcf;
+        margin: 0 auto;
+        position: relative;
+    }
+    
+    #slideBanner .frame {
+        width: 300px;
+        background-color: yellow;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    
+    #slideBanner ul {
+        overflow: hidden;
+        width: 2000px;
+    }
+    
+    #slideBanner li {
+        float: left;
+    }
+    
+    #slideBanner li a {
+        width: 98px;
+        height: 80px;
+        border: 1px solid #aaa;
+        display: block;
+    }
+    
+    .btn_prev,
+    .btn_next {
+        position: absolute;
+        top: 30px;
+        left: 0;
+    }
+    
+    .btn_next {
+        left: initial;
+        right: 0;
+    }
+    </style>
+    <script type="text/javascript">
+    function addEvent(evObj, evName, evH) {
+        if (document.addEventListener) {
+            evObj.addEventListener(evName, evH);
+        } else {
+            evObj.attachEvent("on" + evName, evH);
+        }
+    }
+
+
+    var init = function() {
+        var showNum = 3;
+        var sb_a = document.querySelectorAll("#slideBanner ul a");
+        var minNum = 0;
+        var maxNum = sb_a.length - showNum;
+        var sbNum = 0;
+        var btnNext = document.querySelector(".btn_next");
+        var btnPrev = document.querySelector(".btn_prev");
+        var sb_ul = document.querySelector("#slideBanner ul");
+        var sbWidth = 100;
+        var k = 10;
+        var sum = 0;
+        var autoBnn = null;
+        var sb_i = 0;
+        var direct = null;
+
+        function playBanner() {
+            //sb_ul.style.marginLeft = -sbWidth * a + "px";
+            sb_i += k;
+            if (direct) {
+                sum += k;
+            } else {
+                sum -= k;
+            }
+
+            console.log(sum);
+            sb_ul.style.marginLeft = -sum + "px";
+            if (autoBnn) {
+                clearInterval(autoBnn);
+            }
+            autoBnn = setInterval(playBanner, 50);
+
+            if (sb_i >= sbWidth) {
+                if (autoBnn) {
+                    clearInterval(autoBnn);
+                    sb_i = 0;
+                }
+            }
+        }
+
+        var playNext = function() {
+            if (sbNum >= maxNum || sb_i != 0) {
+                return false;
+            }
+            sbNum++;
+            direct = true;
+            playBanner();
+            console.log(sbNum);
+        }
+        addEvent(btnNext, "click", playNext);
+
+        var playPrev = function() {
+            if (sbNum <= minNum || sb_i != 0) {
+                return false;
+            }
+            sbNum--;
+            direct = false;
+            playBanner(sbNum);
+            console.log(sbNum);
+        }
+        addEvent(btnPrev, "click", playPrev);
+    }
+
+    addEvent(window, "load", init);
+    </script>
+</head>
+
+<body>
+    <div id="slideBanner">
+        <div class="frame">
+            <ul>
+                <li><a href="#">배너-1</a></li>
+                <li><a href="#">배너-2</a></li>
+                <li><a href="#">배너-3</a></li>
+                <li><a href="#">배너-4</a></li>
+                <li><a href="#">배너-5</a></li>
+                <li><a href="#">배너-6</a></li>
+                <li><a href="#">배너-7</a></li>
+                <li><a href="#">배너-8</a></li>
+                <li><a href="#">배너-9</a></li>
+                <li><a href="#">배너-10</a></li>
+            </ul>
+        </div>
+        <input type="button" class="btn_prev" value="이전">
+        <input type="button" class="btn_next" value="다음">
+    </div>
+</body>
+
+</html>
