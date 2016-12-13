@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    img {
+        border: none;
+        vertical-align: middle;
+    }
+    
+    button {
+        cursor: pointer;
+    }
+    
+    .slideBanner {
+        width: 400px;
+        background-color: #000;
+        margin: 0 auto;
+        padding: 10px;
+    }
+    
+    .slideBanner .frame {
+        overflow: hidden;
+    }
+    
+    .slideBanner .frame ul {
+        width: 5000px;
+        overflow: hidden;
+    }
+    
+    .slideBanner .frame li {
+        float: left;
+    }
+    
+    .slideBannerPaging {
+        text-align: center;
+        position: relative;
+        top: -30px;
+    }
+    
+    .slideBannerPaging li {
+        display: inline;
+    }
+    
+    .slideBannerPaging li a {
+        background-color: #edf;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        margin: 0 5px;
+        text-indent: -9999px;
+        border-radius: 50%;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    }
+    
+    .slideBannerPaging li a.on {
+        background-color: tomato;
+    }
+    
+    .slideBtn {
+        text-align: right;
+    }
+    </style>
+    <script type="text/javascript">
+    function addEvent(evObj, evName, evH) {
+        var arrEvent = evName.split(" ");
+
+        for (var i = 0; i < arrEvent.length; i++) {
+            if (document.addEventListener) {
+                evObj.addEventListener(arrEvent[i], evH);
+            } else {
+                evObj.attachEvent("on" + arrEvent[i], evH);
+            }
+        }
+    }
+
+    function init() {
+        var arrBtns = document.querySelectorAll(".slideBtn button"); //button 요소 선택자
+        var slideA = document.querySelectorAll(".slideBanner .frame a"); //a요소 선택자
+        var slideUl = document.querySelector(".slideBanner .frame ul");
+        var pageA = document.querySelectorAll(".slideBannerPaging a"); //슬라이드 동그란 버튼 영역
+        var slideBanner = document.querySelector(".slideBanner"); //슬라이드 영역
+        var num_1 = 1; //보여지는 갯수
+        var maxNum = slideA.length - 1; //최대 개수 계산법
+        var minNum = 0;
+        var showNum = 0; // 슬라이스 증가 해야 할 값
+        var imgWigth = 400; //이미지 가로넓이값
+        var activePaging = 0; // 0번 인덱스 안에 있는 paging on class를 지울때
+        var autoSlide = null; //셋인터벌 초기값 
+        var schBtn = false;
+
+        function stopSlide() {
+            clearInterval(autoSlide);
+            arrBtns[1].innerHTML = "재생";
+        }
+
+        function playSlide() {
+            clearInterval(autoSlide);
+            autoSlide = setInterval(autoClick, 500);
+            arrBtns[1].innerHTML = "정지";
+        }
+
+        addEvent(slideBanner, "mouseenter", stopSlide);
+        addEvent(slideBanner, "mouseleave", playSlide);
+
+        function autoClick() { //함수명은 아래 셋인터벌에 지정함수명
+            showNum++;
+            if (showNum > maxNum) { // 최대치가 가면 0값으로
+                showNum = 0;
+            }
+            playSlideBanner(showNum);
+            chPaging(showNum);
+        }
+        autoSlide = setInterval(autoClick, 500); //함수명아무거나 지정 && 셋인터벌 초기값에 설정
+
+
+
+
+        function playSlideBanner(num) { //showNum값을 받아 버튼 눌렀을때 마진값이 변화게 하는 함수
+            slideUl.style.marginLeft = -num * imgWigth + "px";
+        }
+
+
+
+
+        function chPaging(num) { //showNum값을 받아 paging 버튼 눌으면 on클래스 넣어주는 함수
+            pageA[activePaging].setAttribute("class", "");
+            pageA[num].setAttribute("class", "on");
+            activePaging = num;
+        }
+
+
+
+
+        var playBtn = function() {
+            var btn_txt = this.innerHTML; //버튼 안에 있는 html 문자 this로 구분
+            if (btn_txt == "다음") {
+                showNum++;
+                if (showNum > maxNum) { // 최대치가 가면 0값으로
+                    showNum = 0;
+                }
+                playSlideBanner(showNum);
+                chPaging(showNum);
+
+            } else if (btn_txt == "이전") {
+                showNum--;
+                if (showNum < minNum) { // 최대치가 가면 0값으로
+                    showNum = maxNum;
+                }
+                playSlideBanner(showNum);
+                chPaging(showNum);
+            } else {
+                schBtn = !schBtn; // false 가 true로 바뀜  ! 붙이면!!!
+                if (schBtn) {
+                    clearInterval(autoSlide);
+                    arrBtns[1].innerHTML = "재생";
+                } else {
+                    clearInterval(autoSlide); //중복될수 있으니 먼저 클리어 인터벌 등록
+                    autoSlide = setInterval(autoClick, 500);
+                    arrBtns[1].innerHTML = "정지";
+                }
+            }
+        }
+
+
+
+
+        for (var i = 0; i < arrBtns.length; i++) {
+            addEvent(arrBtns[i], "click", playBtn); //아래 버튼 문자로 버튼 구분 this 로 구분
+        }
+
+
+
+
+        for (var i = 0; i < pageA.length; i++) {
+            (function() {
+                var k = i;
+
+                function clickPaging() {
+                    chPaging(k);
+                    playSlideBanner(k);
+                    showNum = k;
+                }
+                addEvent(pageA[i], "click", clickPaging);
+            }());
+        }
+    }
+
+
+    addEvent(window, "load", init);
+    </script>
+</head>
+
+<body>
+    <div class="slideBanner">
+        <div class="frame">
+            <ul>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/400x300/afa" alt="이미지1"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/400x300/aaf" alt="이미지2"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/400x300/faa" alt="이미지3"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/400x300/dda" alt="이미지4"></a>
+                </li>
+                <!-- <li><a href="#"><img src="http://place-hold.it/400x300/afa" alt="이미지1"></a></li> -->
+                <!-- 맨앞에꺼 복사 -->
+            </ul>
+        </div>
+        <ul class="slideBannerPaging">
+            <li><a href="#" class="on">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+        </ul>
+        <p class="slideBtn">
+            <button>이전</button>
+            <button>정지</button>
+            <button>다음</button>
+        </p>
+    </div>
+</body>
+
+</html>
