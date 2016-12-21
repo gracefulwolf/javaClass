@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <!-- 다운로드방식 -->
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script> -->
+    <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-lastest.js"></script> -->
+    <!--위엔 CDM방식 연습할때만 -->
+    <script type="text/javascript">
+    /*$(document).ready(function() {
+            $("h1").css("color", "red");
+        });*/
+
+    $(function() {
+        /*$("h1").css("color", "pink")  /선택자1
+        .css("font-size", "50px")
+        .css("background-color","green");  //체이닝 기법 객체하나에 여러 매소드를 연결 ; 끝에 한개*/
+
+        /*$("h1").css({     /선택자2
+        "color":"pink",
+        "font-size":"50px",
+        "background-color":"green"
+        });   //{객체 안에는 속성값} [배열]*/
+
+        /*$("h4").next().css({  //next 다음선택자
+            "color":"hotpink"
+        });*/
+
+        /*$("h4+h2").css({   // next랑 같은  css 다음선택자  +
+            "color":"green"
+        });*/
+
+        /*$("h4").prev().css({   //prev() 전샌택자
+            "color":"blue"
+        })*/
+
+        /*$("h5").parent().css({  // parent() 부모선택자
+            "border":"1px solid red"
+        });*/
+
+        /*$(".box").children().css({  //children()자식선택자
+            "border":"1px solid blue"
+        });*/
+        /*$(".box > *").css({ //자식선택자
+            "border":"1px solid blue"
+        });*/
+
+        /*$("h1").siblings().css({ .siblings() //형제들 선택자
+            "color": "green"
+        });*/
+
+        /*$("h5").closest("div").css({   //.closest("선택자") 선택자에서 가장 가까운 선택자 선택
+            "border":"1px solid red"
+        });*/
+        /*$(".box li:first").css({
+            "border":"1px solid red"
+        });
+
+        $("h2:last").css({
+            "border":"1px solid red"
+        });*/
+        /*$(".box li").eq(-1).css({   //eq() 배열같은거 안에 배열값넣어줌.. -1 제일 마지막 배열
+            "border":"1px solid red"
+        });*/
+        /*$(".box li:eq(1)").css({   //위와 같은 방식
+            "border":"1px solid red"
+        });*/
+        /*var i = 0;
+        $(".box li").eq(i).css({    //변수값 대입
+            "border":"1px solid red"
+        });*/
+        /*$(".box li:eq("+i+")").css({   //위와 같은 방식
+            "border":"1px solid red"
+        });*/
+        /*$(".box li:gt(2)").css({   //less than 2번 인덱스보다 작은  great than :gt()  ()안 인덱스보다 큰 인덱스
+            "border":"1px solid red"
+        });*/
+        /*$(".box li:nth-child(2n)").css({   
+            "border":"1px solid red"
+        });
+        $("h2:hidden").css({ //숨겨진 h2 선택
+            display:"block",
+            color:"pink",
+            fontSize:"80px",
+            backgroundColor:"red"
+        })*/
+        /*$(".box li").not(":first").css({ //첫번째 li만 제외
+            border : "1px solid red"
+        });*/
+        /*$(".box li").not(":eq(1)").css({ //두번째만 제외
+            border : "1px solid red"
+        });*/
+        /*$("*").not("h1, h2, h3").css({
+            border : "1px solid red"
+        });*/
+        $(".box li").not(":empty").css({
+            "border" : "1px solid red"
+        })
+    });
+    </script>
+    <title>SiteName|PageName</title>
+</head>
+
+<body>
+    <h1>제목1</h1>
+    <h2 style="display:none">제목2</h2>
+    <h3>제목3</h3>
+    <h4>제목4</h4>
+    <h2>제목6</h2>
+    <div>
+        <div class="box">
+            <h5>제목5</h5>
+            <ul>
+                <li>리스트1</li>
+                <li>리스트2</li>
+                <li><span>리스트3</span></li>
+                <li>리스트4</li>
+                <li>리스트5</li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
