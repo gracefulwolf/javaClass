@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <title>SiteName|PageName</title>
+    <script type="text/javascript">
+    $(function() {
+
+        /*var k = function() {
+            alert(1234);
+        }
+        $(".btn1").click(k);*/
+
+        /*var k = function() {
+        	console.log(1234);
+        }*/
+        /*$(".btn1").mouseover(k);
+        $(".btn1").focus(k);*/
+        /*$(".btn1").on("mouseover focus click", k); //여러 이벤트 사용할때 .on*/
+
+
+        /*$(document).on("mouseover focus",".btn1", k); //뒤에 새로운 요소 만들었는데 이벤트가 먹지 않을때 
+        var o = $("p:first").clone();
+        $(".box1").append(o);*/
+
+
+
+        /*$(document).on("dblclick",".btn2",function(){
+        	console.log(12344);
+        });*/
+
+
+
+
+        /*$(document).on({
+            "dblclick" : function(){
+            	$(".btn2").css({
+            		border : "none"
+            	});
+            },
+            "mouseover focus": function(){
+            	$(".btn2").css({
+            		border : "3px solid red"
+            	});
+            }
+        }, ".btn2");*/
+
+        var chkBox = function() {
+        	var m = $(".box2 table").find(":checkbox");
+            if ($(this).prop("checked")) { //prop  = 입력요소 가져오는 매서드;
+            	m.prop("checked",true);
+            } else {
+            	m.prop("checked",false);
+            }
+        }
+
+        $("#sel_all").on("click", chkBox);
+
+
+    });
+    </script>
+</head>
+
+<body>
+    <div class="box1">
+        <p>
+            <button class="btn1">버튼1</button>
+        </p>
+        <p>
+            <button class="btn2">버튼2</button>
+        </p>
+    </div>
+    <div class="box2">
+        <p>
+            <input type="checkbox" name="sel_all" id="sel_all"> 전체선택</p>
+        <table border="1">
+            <tr>
+                <td>
+                    <input type="checkbox" name="" id="">
+                </td>
+                <td>내용1</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="" id="">
+                </td>
+                <td>내용2</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="" id="">
+                </td>
+                <td>내용3</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="" id="">
+                </td>
+                <td>내용4</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="" id="">
+                </td>
+                <td>내용5</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="" id="">
+                </td>
+                <td>내용6</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="" id="">
+                </td>
+                <td>내용7</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="" id="">
+                </td>
+                <td>내용8</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="" id="">
+                </td>
+                <td>내용9</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="" id="">
+                </td>
+                <td>내용10</td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
