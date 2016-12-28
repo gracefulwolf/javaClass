@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    var i = 0;
+    $(window).on("resize", function() {
+        /*console.log(++i);*/
+        console.log($(window).width());
+        var w = $(window).width();
+        var b = $("body");
+
+        if (w >= 1024) {
+            b.attr("class", ""); // <-- 클래스값을 한번에 지울때
+            b.addClass("pc");
+
+        } else if (w >= 480 && w < 1024) {
+            b.attr("class", "");
+            b.addClass("tablet");
+            
+        } else {
+            b.attr("class", "");
+            b.addClass("mobile");
+            
+        }
+    });
+    $(function() {
+        $(window).resize();
+        $(document).on("click",".pc .btn_1",function(){
+        	$("body").css({
+        		backgroundColor : "green"
+        	});
+        });
+        $(document).on("click",".tablet .btn_2",function(){
+        	$("body").css({
+        		backgroundColor : "pink"
+        	});
+        });
+        $(document).on("click",".mobile .btn_3",function(){
+        	$("body").css({
+        		backgroundColor : "blue"
+        	});
+        });
+    });
+
+    </script>
+</head>
+<!-- 
+1024~ : pc버전
+480 ~ 1024 : tablet버전
+~ 480 : mobile버전 
+-->
+
+<body class="pc">
+    <button class="btn_1">PC</button>
+    <button class="btn_2">태블릿</button>
+    <button class="btn_3">모바일</button>
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var select = $(".selectBox");
+        var selcetBtn = $(".selectBox button");
+        var beforeObj = null;
+        var selectHadller = function() {
+
+            if (beforeObj != selcetBtn.index($(this))) {
+                $("ul:visible", select).slideUp("fast"); //이미사용하고 있는 변수 다음에 하위요소 선택하고싶으면 앞에다가 넣음
+                var o = $(this).parent().next();
+                o.slideDown("normal");
+                beforeObj = selcetBtn.index($(this));
+            }
+        };
+        selcetBtn.on("mouseover focus", selectHadller);
+        var selMouseleave = function() {
+            $("ul:visible", select).slideUp("fast");
+            beforeObj = null;
+        }
+        select.on("mouseleave blur", selMouseleave);
+
+        var selAtagClick = function(e){
+        	e.preventDefault(); // 이벤트 개체 하나 만들어 넣어가지 않게  preventdefault 값을 넣음
+        	var t = $(this).text();
+        	var btn = $(this).closest(".selectBox").find("button"); //선택한 this 에 가장 가까운 요소 선택
+        	var inputH = $(this).closest(".selectBox").find(":hidden");
+        	btn.text(t);
+        	inputH.val($(this).attr("href"));
+
+        }
+
+        $("a",select).on("click",selAtagClick);
+    });
+    </script>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    a {
+        text-decoration: none;
+        color: #333;
+    }
+    
+    body {
+        font: 13px;
+        "맑은고딕",
+        MalgunGothic,
+        sans-serif;
+        color: #333;
+    }
+    
+    button:hover {
+        cursor: pointer;
+    }
+    
+    .selectBox {
+        display: inline-block;
+        position: relative;
+    }
+    
+    .selectBox span {
+        border: 1px solid #056911;
+        display: inline-block;
+        padding-right: 2px;
+    }
+    
+    .selectBox button {
+        padding: 0 40px 0 10px;
+        height: 25px;
+        line-height: 23px;
+        border: none;
+        background: #fff url(imgs/select.png) right 3px no-repeat;
+        width: 100px;
+    }
+    
+    .selectBox ul {
+        border: 1px solid #ccc;
+        position: absolute;
+        top: 27px;
+        left: 0;
+        width: 100%;
+        box-sizing: border-box;
+        display: none;
+        z-index: 10;
+        background-color: #fff;
+    }
+    
+    .selectBox ul a {
+        display: block;
+        height: 25px;
+        line-height: 25px;
+    }
+    
+    .selectBox ul a:hover,
+    .selectBox ul a:focus {
+        background-color: #efefef;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="selectBox">
+        <span><button>네이버</button></span>
+        <ul>
+            <li><a href="www.naver.com">네이버</a></li>
+            <li><a href="www.daum.net">다음</a></li>
+            <li><a href="www.nate.com">네이트</a></li>
+            <li><a href="www.google.com">구글</a></li>
+        </ul>
+        <input type="hidden" name="">
+        <!-- 전송목적 -->
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div class="selectBox">
+        <span><button>네이버1</button></span>
+        <ul>
+            <li><a href="www.naver.com">네이버1</a></li>
+            <li><a href="www.daum.net">다음2</a></li>
+            <li><a href="www.nate.com">네이트3</a></li>
+            <li><a href="www.google.com">구글4</a></li>
+        </ul>
+        <input type="hidden" name="">
+        <!-- 전송목적 -->
+    </div>
+</body>
+
+</html>

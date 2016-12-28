@@ -34,3 +34,34 @@ function nextElement(obj) {
     }
     return m;
 }
+
+// 제이쿼리 반응형
+/*
+ *@Event : 사이즈 감지(resize) 이벤트 
+ */
+
+$(window).on("resize", function() {
+        console.log($(window).width());
+        var w = $(window).width();
+        var b = $("body");
+
+        if (w >= 1024) {
+            b.attr("class", ""); // <-- 클래스값을 한번에 지울때
+            b.addClass("pc");
+
+        } else if (w >= 480 && w < 1024) {
+            b.attr("class", "");
+            b.addClass("tablet");
+            
+        } else {
+            b.attr("class", "");
+            b.addClass("mobile");
+            
+        }
+    });
+
+    $(function(){
+        $(window).resize();
+        //사이즈 맞춰서 넣기
+    });
+

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    var i = 0;
+    $(window).on("scroll", function() { //핸들러 안에서 this를 시작하면  이벤트를 등록한 요소가 선택
+        var scH = $(this).scrollTop();
+        var q = $(".quick");
+        q.css({
+            top: scH + 50 + "px" //50 = 원래 top : 50px 있어서 고정값
+        });
+        if ( scH >= 50) {
+        	$("#gnb").addClass("on");
+        	$("#gnb").css({
+        		 "margin-top" : scH + 50 + "px"
+        	});
+        } else{
+        	$("#gnb").removeClass("on");
+        	$("#gnb").css({
+        		 "margin-top" : 0 + "px"
+        	});
+        }
+    });
+
+
+
+    </script>
+    <style type="text/css">
+    li {
+        list-style: none;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    #wrap {
+        width: 800px;
+        height: 2000px;
+        background: rgb(184, 225, 252);
+        /* Old browsers */
+        background: -moz-linear-gradient(top, rgba(184, 225, 252, 1) 0%, rgba(169, 210, 243, 1) 10%, rgba(144, 186, 228, 1) 25%, rgba(144, 188, 234, 1) 37%, rgba(144, 191, 240, 1) 50%, rgba(107, 168, 229, 1) 51%, rgba(162, 218, 245, 1) 83%, rgba(189, 243, 253, 1) 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(184, 225, 252, 1) 0%, rgba(169, 210, 243, 1) 10%, rgba(144, 186, 228, 1) 25%, rgba(144, 188, 234, 1) 37%, rgba(144, 191, 240, 1) 50%, rgba(107, 168, 229, 1) 51%, rgba(162, 218, 245, 1) 83%, rgba(189, 243, 253, 1) 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(184, 225, 252, 1) 0%, rgba(169, 210, 243, 1) 10%, rgba(144, 186, 228, 1) 25%, rgba(144, 188, 234, 1) 37%, rgba(144, 191, 240, 1) 50%, rgba(107, 168, 229, 1) 51%, rgba(162, 218, 245, 1) 83%, rgba(189, 243, 253, 1) 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#b8e1fc', endColorstr='#bdf3fd', GradientType=0);
+        /* IE6-9 */
+        margin: 0 auto;
+        position: relative;
+    }
+    
+    .quick {
+        width: 80px;
+        height: 150px;
+        position: absolute;
+        top: 50px;
+        right: -82px;
+        background-color: pink;
+    }
+    
+    #gnb {
+        background-color: yellow;
+        position: fixed;
+        width: 100%;
+        left: 0;
+        top: 0;
+    }
+    #gnb ul{overflow: hidden;}
+    
+    #gnb li {
+        width: 25%;
+        float: left;
+    }
+    
+    #gnb li a {
+        display: block;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        border: 1px solid #000;
+    }
+    #gnb.on{
+    	position: static;
+    	margin-top: 50px;
+    	display: inline-block;  /* 마진 중복 됬을때 inline-block 넣어줌*/
+
+    }
+
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <nav id="gnb">
+            <ul>
+                <li><a href="#">메뉴1</a></li>
+                <li><a href="#">메뉴2</a></li>
+                <li><a href="#">메뉴3</a></li>
+                <li><a href="#">메뉴4</a></li>
+            </ul>
+        </nav>
+        <div class="quick">퀵메뉴</div>
+    </div>
+</body>
+
+</html>
