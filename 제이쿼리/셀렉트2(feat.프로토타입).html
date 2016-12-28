@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    /*
+                        		객체방식
+                        		1. 객체 생성함수 정의 (첫글자가 대문자)
+                        		new Date() => function date() { }
+
+                        		2. 속성, 메서드 정의 
+                            */
+
+    function ObjSelect(obj, obj2) { //객체 생성 함수   //핸들러에서의 this = 클릭한 개체  객체생성에서의 this = 참조변수   콜백함수에서의 this   다 다름 
+        this.myEl = obj;
+        this.mtBtn = obj2;
+        /*this.bindEvent = function(){ //this 를 붙여서 오로지 객체에서만 사용가능
+        	if(this.myEl == ".sel_1"){
+        		alert(1);
+        	}else {
+        		alert(2);
+        	}
+        }*/
+        this.bindEvent();
+    }
+    // **************이벤트 등록 메서드*****
+    ObjSelect.prototype.bindEvent = function() { //프로토타입방식 =   객세생성함수 + 프로토타입 + 매서드 
+            /*if(this.myEl == ".sel_1"){
+            		alert(1);
+            	}else {
+            		alert(2);
+            	}*/
+            $(document).on("click", this.myEl + " button", $.proxy(this.selectHanddler, this));
+            $(document).on("click", this.myEl + " ul a", $.proxy(this.selectChText, this));
+        }
+        //$.proxy(this.selectHanddler,this)                                                
+    ObjSelect.prototype.selectChText = function(e){
+    	e.preventDefault();
+    	var $myThis = $(e.target);  //제이쿼리로 만듬  내가 클릭한 요소  a요소
+    	var $selEl = $(this.myEl); // sel_1 값
+    	var $selUl = $("ul",$selEl);
+    	var $button = $("button", $selEl); 
+    	var $theText = $myThis.text();
+    	$button.text($theText);
+    	$selUl.hide();
+    	$button.css({
+            	"background-position-y" : "3px"
+            })
+    }
+    ObjSelect.prototype.selectHanddler = function(e) { //핸들러안에서this = 클릭한 개체의 값 ..  객체생성this랑 다름
+        //alert(1234);
+        var $myThis = $(e.target); //제이쿼리 변수앞에 $넣어줌
+        var $selEl = $(this.myEl);
+        var $myUl = $selEl.find("ul");
+        var $button = $("button", $selEl);
+        if ($myUl.css("display") == "none") {
+            $myUl.show();
+            $button.css({
+            	"background-position-y" : "-109px"
+            })
+        } else {
+            $myUl.hide();
+            $button.css({
+            	"background-position-y" : "3px"
+            })
+        }
+
+    }
+    $(function() { //this = s1, s2  객체 생성 변수에 적용
+        s1 = new ObjSelect(".sel_1", "btn1"); //객체 생성
+        s2 = new ObjSelect(".sel_2", "btn2"); //객체 생성
+    });
+    </script>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    a {
+        text-decoration: none;
+        color: #333;
+    }
+    
+    body {
+        font: 13px;
+        "맑은고딕",
+        MalgunGothic,
+        sans-serif;
+        color: #333;
+    }
+    
+    button:hover {
+        cursor: pointer;
+    }
+    
+    .selectBox {
+        display: inline-block;
+        position: relative;
+    }
+    
+    .selectBox span {
+        border: 1px solid #056911;
+        display: inline-block;
+        padding-right: 2px;
+    }
+    
+    .selectBox button {
+        padding: 0 40px 0 10px;
+        height: 25px;
+        line-height: 23px;
+        border: none;
+        background: #fff url(imgs/select.png) right 3px no-repeat;
+        width: 100px;
+    }
+    
+    .selectBox ul {
+        border: 1px solid #ccc;
+        position: absolute;
+        top: 27px;
+        left: 0;
+        width: 100%;
+        box-sizing: border-box;
+        display: none;
+        z-index: 10;
+        background-color: #fff;
+    }
+    
+    .selectBox ul a {
+        display: block;
+        height: 25px;
+        line-height: 25px;
+    }
+    
+    .selectBox ul a:hover,
+    .selectBox ul a:focus {
+        background-color: #efefef;
+    }
+    </style>
+</head>
+
+<body>
+    <select name="" id="">
+        <option value="">옵션텍스트1</option>
+        <option value="">옵션텍스트2</option>
+        <option value="">옵션텍스트3</option>
+        <option value="">옵션텍스트4</option>
+    </select>
+    <br/>
+    <br/>
+    <br/>
+    <div class="selectBox sel_1">
+        <span><button>네이버</button></span>
+        <ul>
+            <li><a href="www.naver.com">네이버</a></li>
+            <li><a href="www.daum.net">다음</a></li>
+            <li><a href="www.nate.com">네이트</a></li>
+            <li><a href="www.google.com">구글</a></li>
+        </ul>
+        <input type="hidden" name="">
+        <!-- 전송목적 -->
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div class="selectBox sel_2">
+        <span><button>네이버1</button></span>
+        <ul>
+            <li><a href="www.naver.com">네이버1</a></li>
+            <li><a href="www.daum.net">다음2</a></li>
+            <li><a href="www.nate.com">네이트3</a></li>
+            <li><a href="www.google.com">구글4</a></li>
+        </ul>
+        <input type="hidden" name="">
+        <!-- 전송목적 -->
+    </div>
+</body>
+
+</html>
