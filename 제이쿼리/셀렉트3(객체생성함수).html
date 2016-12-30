@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    /*
+        	1. 생성함수 정의;
+        	2. 속성, 메서드 생성;
+        	3. 객체 생성
+        */
+    // MVC(Moedel View Controller)
+    function InitSelect(objName,idx) { //객체 생성 함수 (앞에 대문자)
+        this.sel_c = objName;
+        this.idx = idx;
+        this.myWrap = "div[data-select="+this.sel_c+"]:eq(" + this.idx + ")";
+        this.allSelectWrap = $("div[data-select]");
+        this.bindEvent();
+    }
+    InitSelect.prototype.bindEvent = function() { //이벤트 등록 메서드
+        $(document).on("click",this.myWrap + " button", $.proxy(this.selectHanddler_1, this));
+    }
+    InitSelect.prototype.selectHanddler_1 = function(e) {
+        //console.log(this);
+        var $myThis = $(e.target); // target 이벤트요소의 가장 하위요소(주로 img요소 가져올때) target 호환성문제로 제이쿼리로 이용
+        var $myselWrap = $(this.myWrap);
+        var $myUl = $("ul", $myselWrap);
+        if ($myUl.is(":hidden")) { //is 숨겨져 있으면 true, 보이면 fales
+        	$("ul:visible", this.allSelectWrap).hide();
+            $myUl.show();
+        } else {
+        	$myUl.hide();
+        }
+
+    }
+    $(function() {
+    	var sel = [];
+       /* sel[0] = new InitSelect("sel_1"); // 아래 클래스값을 가져옴
+        sel[1] = new InitSelect("sel_2"); // 아래 클래스값을 가져옴
+        sel[2] = new InitSelect("sel_3"); // 아래 클래스값을 가져옴*/
+        /*each()*/
+        $.each($("div[data-select=sel]"), function(i,o){
+        	 sel[i] = new InitSelect("sel",i);
+        });
+     
+    });
+    </script>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    a {
+        text-decoration: none;
+        color: #333;
+    }
+    
+    body {
+        font: 13px;
+        "맑은고딕",
+        MalgunGothic,
+        sans-serif;
+        color: #333;
+    }
+    
+    button:hover {
+        cursor: pointer;
+    }
+    
+    .selectBox {
+        display: inline-block;
+        position: relative;
+    }
+    
+    .selectBox span {
+        border: 1px solid #056911;
+        display: inline-block;
+        padding-right: 2px;
+    }
+    
+    .selectBox button {
+        padding: 0 40px 0 10px;
+        height: 25px;
+        line-height: 23px;
+        border: none;
+        background: #fff url(imgs/select.png) right 3px no-repeat;
+        width: 100px;
+    }
+    
+    .selectBox ul {
+        border: 1px solid #ccc;
+        position: absolute;
+        top: 27px;
+        left: 0;
+        width: 100%;
+        box-sizing: border-box;
+        display: none;
+        z-index: 10;
+        background-color: #fff;
+    }
+    
+    .selectBox ul a {
+        display: block;
+        height: 25px;
+        line-height: 25px;
+    }
+    
+    .selectBox ul a:hover,
+    .selectBox ul a:focus {
+        background-color: #efefef;
+    }
+    </style>
+</head>
+
+<body>
+    <select name="" id="">
+        <option value="">옵션텍스트1</option>
+        <option value="">옵션텍스트2</option>
+        <option value="">옵션텍스트3</option>
+        <option value="">옵션텍스트4</option>
+    </select>
+    <br/>
+    <br/>
+   
+    <br/>
+    <br/>
+    <br/>
+    <div class="selectBox" data-select = "sel">
+        <span><button>네이버</button></span>
+        <ul>
+            <li><a href="www.naver.com">네이버</a></li>
+            <li><a href="www.daum.net">다음</a></li>
+            <li><a href="www.nate.com">네이트</a></li>
+            <li><a href="www.google.com">구글</a></li>
+        </ul>
+        <input type="hidden" name="">
+        <!-- 전송목적 -->
+    </div>
+    <br/>
+    <br/>
+    <br/>
+
+    <br/>
+    <br/>
+    <br/>
+    <div class="selectBox" data-select = "sel">
+        <span><button>네이버1</button></span>
+        <ul>
+            <li><a href="www.naver.com">네이버1</a></li>
+            <li><a href="www.daum.net">다음2</a></li>
+            <li><a href="www.nate.com">네이트3</a></li>
+            <li><a href="www.google.com">구글4</a></li>
+        </ul>
+        <input type="hidden" name="">
+        <!-- 전송목적 -->
+    </div>
+    <br/>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div class="selectBox" data-select = "sel">
+        <span><button>네이버1</button></span>
+        <ul>
+            <li><a href="www.naver.com">네이버1</a></li>
+            <li><a href="www.daum.net">다음2</a></li>
+            <li><a href="www.nate.com">네이트3</a></li>
+            <li><a href="www.google.com">구글4</a></li>
+        </ul>
+        <input type="hidden" name="">
+        <!-- 전송목적 -->
+    </div>
+</body>
+
+</html>
