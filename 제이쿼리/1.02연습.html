@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .box1,
+    .box2,
+    .box3,
+    .box4 {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #000;
+    }
+    </style>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        /*$(document).on("click",".btn", function(){
+        	$(this).parent().css({"background-color":"yellow"});
+        });*/
+
+        //this = bgChg 를 실행한 .btn1 이 됨
+        $.fn.bgChg = function(opt) { //opt = option
+        	//console.log(opt);
+            $.each($(this), function(i, o) { //i = idx, 0 = 버튼하나하나
+                $(o).on("click", function() {
+                    $(this).parent().css({
+                        "background-color": opt.color
+                    });
+                });
+            });
+        }
+        $(".btn").bgChg({color : "blue"});
+        $(".btn4").bgChg({color:"orange"});
+    });
+    </script>
+</head>
+
+<body>
+    <div class="box1">
+        <button class="btn">버튼1</button>
+    </div>
+    <div class="box2">
+        <button class="btn">버튼2</button>
+    </div>
+    <div class="box3">
+        <button class="btn">버튼3</button>
+    </div>
+    <div class="box4">
+        <button class="btn4">버튼4</button>
+    </div>
+</body>
+
+</html>

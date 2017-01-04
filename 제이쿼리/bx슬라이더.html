@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <!-- <link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css"> -->
+    <style type="text/css">
+    * {margin: 0;padding: 0;}
+    li{list-style: none;}
+    img{max-width: 100%; vertical-align: middle;}
+    #wrap{max-width: 1000px; margin: 0 auto; overflow: hidden;}
+    .slideWrap{width: 80%; float: left; position: relative;}
+    .rightSide{width: 20%; float: right; background-color: hotpink; min-height: 200px;}
+
+	.slideWrap .bx-pager{position: absolute; bottom:0; left: 0; width: 100%; text-align: center;}
+    .slideWrap .bx-pager-item{display: inline; margin: 0 3px;}
+    .slideWrap .bx-pager-link{display: inline-block; width:15px; height: 15px; text-indent: -9999px; 
+    	background: url(imgs/slide.png) 0 0 no-repeat;}
+    .slideWrap .bx-pager-link.active{background-position: 0 -20px;}
+	
+
+	.slideWrap .bx-controls-auto{position: absolute; bottom: 0; left: 50%; margin-left:56px; }
+	.slideWrap .bx-start{display: inline-block; width:14px; height: 14px; text-indent: -9999px; 
+						background: url(imgs/slide.png) 0 -47px no-repeat;}
+	.slideWrap .bx-stop{display: inline-block; width:8px; height: 15px; text-indent: -9999px; 
+						background: url(imgs/slide.png) 0 -64px no-repeat;}
+	.slideWrap .bx-start.active, .slideWrap .bx-stop.active{display: none;}		
+
+
+	
+	.slideWrap .bx-prev, .slideWrap .bx-next{display: inline-block; width: 46px;height: 46px; text-indent: -9999px;
+		background: url(imgs/slide.png) 0 -136px no-repeat; position: absolute; top: 50%; margin-top: -23px;}
+	.slideWrap .bx-prev{left: 10px;}		
+	.slideWrap .bx-next{background-position: 0 -85px; right: 10px;}	
+	.slideWrap .bx-prev:hover, .slideWrap .bx-prev:focus, .slideWrap .bx-next:hover, .slideWrap .bx-next:focus{
+		background-position-x: -46px;
+		-ms-background-position-x: -46px;
+	}	
+    </style>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
+    <script type="text/javascript">
+    	$(function(){
+    		$(".myslide_1").bxSlider({
+    			auto : true,
+    			autoControls : true,
+    			controls:true
+    		});
+
+    	});
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+    	<div class="slideWrap">
+    		<ul class="myslide_1">
+    			<li><a href="#"><img src="http://place-hold.it/800x200/afa" alt=""></a></li>
+    			<li><a href="#"><img src="http://place-hold.it/800x200/0cc" alt=""></a></li>
+    			<li><a href="#"><img src="http://place-hold.it/800x200/cab" alt=""></a></li>
+    			<li><a href="#"><img src="http://place-hold.it/800x200/bfd" alt=""></a></li>
+    			<li><a href="#"><img src="http://place-hold.it/800x200/dea" alt=""></a></li>
+    		</ul>
+    	</div>
+    	<div class="rightSide">오른쪽 영역</div>
+    </div>
+</body>
+
+</html>

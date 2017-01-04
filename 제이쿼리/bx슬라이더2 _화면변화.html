@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
+    <title>SiteName|PageName</title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    img {
+        vertical-align: middle;
+    }
+    
+    .sliedeBannerZone {
+        width: 800px;
+        margin: 0 auto;
+        background-color: pink;
+    }
+    </style>
+    <script type="text/javascript">
+    $(function() {
+        var num = 0;
+        var k;
+        $(window).on("resize", function() {
+            if ($(window).width() > 800) {
+                k = { // > 480 
+                    auto: true,
+                    minSlides: 4,
+                    maxSlides: 4,
+                    slideWidth: 100,
+                    slideMargin: 10,
+                    hideControlOnEnd: true,
+                    easing: "ease-out",
+                    controls: false
+                }
+            } else {
+                k = { //< 480
+                    auto: true,
+                    minSlides: 2,
+                    maxSlides: 2,
+                    slideWidth: 100,
+                    slideMargin: 10,
+                    hideControlOnEnd: true,
+                    easing: "ease-out",
+                    controls: false
+                }
+            }
+        });
+        $(window).trigger("resize");
+
+        var mySliede = $(".slideList").bxSlider(k);
+        $(document).on("click", ".btn_next", function() {
+            mySliede.goToNextSlide();
+        });
+        $(window).on("resize", function() {
+            console.log($(window).width());
+            mySliede.reloadSlider(k);
+        });
+        $(document).on("click",".btn_reload", function(){
+            alert(1234);
+            mySliede.reloadSlider({ // > 480 
+                    auto: true,
+                    minSlides: 4,
+                    maxSlides: 4,
+                    slideWidth: 100,
+                    slideMargin: 10,
+                    hideControlOnEnd: true,
+                    easing: "ease-out",
+                    controls: false
+                });
+        })
+        
+    });
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="sliedeBannerZone">
+            <ul class="slideList">
+                <li>
+                    <a href="#"><img src="http://place-hold.it/100x90/f0b" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/100x90/962" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/100x90/cfa" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/100x90/dda" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/100x90/821" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/100x90/ffa" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/100x90/fcd" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/100x90/152" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/100x90/afc" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/100x90/bbe" alt=""></a>
+                </li>
+            </ul>
+            <button class="btn_prev">이전으로 이동 </button>
+            <button class="btn_next">다음으로 이동 </button>
+            <br/>
+            <button class="btn_reload">Reload</button>
+            <br/>
+            <button class="btn_destroy">destroy</button>
+        </div>
+    </div>
+</body>
+
+</html>

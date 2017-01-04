@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
+    <title>SiteName|PageName</title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    img {
+        vertical-align: middle;
+    }
+    
+    .sliedeBannerZone {
+        width: 800px;
+        margin: 0 auto;
+        background-color: pink;
+    }
+    </style>
+    <script type="text/javascript">
+    $(function() {
+        $.fn.playSlide = function(opt) {
+            var baseOption = {
+                auto: true,
+                minSlides: 5,
+                maxSlides: 5,
+                slideWidth: 100,
+                slideMargin: 10,
+                mode: "horizontal",
+                speed: 500
+            }
+            var k;
+            $(window).on("resize", function() {
+                if ($(window).width() > 800) { //pc
+                    k = $.extend(baseOption, opt.pc);
+                } else if ($(window).width() > 480) { //tablet
+                    k = $.extend(baseOption, opt.tablet);
+                } else { //mobile
+                    k = $.extend(baseOption, opt.mobile);
+                }
+                console.log(k);
+            });
+
+            $(window).resize();
+            var mySliede = $(this).bxSlider(k); //여기서 this는  playSlide를 적용한 ".slideList"
+            $(window).on("resize", function() {
+                console.log($(window).width());
+                mySliede.reloadSlider(k);
+            });
+        }
+        $(".slideList").playSlide({
+            mobile: {minSlides: 2,maxSlides: 2, slideWidth: 150},
+            tablet: {minSlides: 3,maxSlides: 3, slideWidth: 150},
+            pc: {minSlides: 5,maxSlides: 5, slideWidth: 150}
+        });
+        $(".slideList_2").playSlide({
+            mobile: {minSlides: 4,maxSlides: 4},
+            tablet: {minSlides: 5,maxSlides: 5},
+            pc: {minSlides: 7,maxSlides: 7}
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="sliedeBannerZone">
+            <ul class="slideList">
+                <li>
+                    <a href="#"><img src="http://place-hold.it/150x90/f0b" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/150x90/962" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/150x90/cfa" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/150x90/dda" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/150x90/821" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/150x90/ffa" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/150x90/fcd" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/150x90/152" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/150x90/afc" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/150x90/bbe" alt=""></a>
+                </li>
+            </ul>
+            <button class="btn_prev">이전으로 이동 </button>
+            <button class="btn_next">다음으로 이동 </button>
+            <br/>
+            <button class="btn_reload">Reload</button>
+            <br/>
+            <button class="btn_destroy">destroy</button>
+        </div>
+        <div class="sliedeBannerZone">
+            <ul class="slideList_2">
+                <li>
+                    <a href="#"><img src="http://place-hold.it/100x90/f0b" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/100x90/962" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/100x90/cfa" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/100x90/dda" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/100x90/821" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/100x90/ffa" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/100x90/fcd" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/100x90/152" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/100x90/afc" alt=""></a>
+                </li>
+                <li>
+                    <a href="#"><img src="http://place-hold.it/100x90/bbe" alt=""></a>
+                </li>
+            </ul>
+            <button class="btn_prev">이전으로 이동 </button>
+            <button class="btn_next">다음으로 이동 </button>
+            <br/>
+            <button class="btn_reload">Reload</button>
+            <br/>
+            <button class="btn_destroy">destroy</button>
+        </div>
+    </div>
+</body>
+
+</html>

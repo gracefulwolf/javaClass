@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <style type="text/css">
+    	*{margin:0; padding:0;}
+    	.box{width: 200px; height: 200px; overflow: hidden; border:1px solid #000; margin: 0 auto; position: relative;}
+    	.box:hover div{bottom:0;}
+    	.box div{position: absolute; bottom: -500px; left: 0; width: 100%; height: 50px; transition: all 0.3s linear;}
+     	.box div span{position: relative;z-index: 2;}
+    	.box div:after{content: "";background: url(imgs/bg.png) 0 0; width: 100%; height: 100%; display: block;
+    			 bottom: 0; left: 0;position: absolute; z-index: 1; /* opacity: 0.5; filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=50); */}
+
+    </style>
+</head>
+
+<body>
+	<div class="box">
+		<img src="http://place-hold.it/200x200/f00" alt="">
+		<div><span>테스트</span></div>
+	</div>
+</body>
+
+</html>
