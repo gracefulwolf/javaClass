@@ -44,8 +44,6 @@
             arrTab[i] = new TabmenuFnc(tabText, i); //개체
         });
     });
-
-
 }());
 
 /*
@@ -88,103 +86,46 @@ $.fn.playSlide = function(opt) {
     });
 }
 
-
 /*
  *@$.fn.gnb 메서드 
  *@opt {object} : img 파일명값
  */
 
 $.fn.gnb = function(opt) {
+    var myThis = $(this);
+    var activeMenu = null;
+    var mouseOver = function() {
         var ts = $(this);
-        var activeMenu = null;
-        var mouseOver = function() {
-            var myThis = $(this);
+        if (activeMenu) {
+            activeMenu.next().slideUp(300);
+            var bfImg = $("img", activeMenu).attr("src").replace(opt.name2, opt.name1);
+            $("img", activeMenu).attr("src", bfImg);
+        }
+
+        ts.next().slideDown(300);
+
+        var ovImg = $("img", ts).attr("src").replace(opt.name1, opt.name2);
+        $("img", ts).attr("src", ovImg);
+
+        activeMenu = ts;
+    }
+    $("ul ul", myThis).hide();
+    $(">ul>li>a", myThis).on({
+        "mouseover focus": mouseOver
+    });
+    myThis.on({ //마우스리브 이벤트실행함수
+        "mouseleave": function() {
             if (activeMenu) {
                 activeMenu.next().slideUp(300);
                 var bfImg = $("img", activeMenu).attr("src").replace(opt.name2, opt.name1);
                 $("img", activeMenu).attr("src", bfImg);
             }
-
-            myThis.next().slideDown(300);
-
-            var ovImg = $("img", myThis).attr("src").replace(opt.name1, opt.name2);
-            $("img", myThis).attr("src", ovImg);
-
-            activeMenu = myThis;
         }
-        $("ul ul", ts).hide();
-        $(">ul>li>a", ts).on({ "mouseover focus": mouseOver });
-        ts.on({ //마우스리브 이벤트실행함수
-            "mouseleave": function() {
-                if (activeMenu) {
-                    activeMenu.next().slideUp(300);
-                    var bfImg = $("img", activeMenu).attr("src").replace(opt.name2, opt.name1);
-                    $("img", activeMenu).attr("src", bfImg);
-                }
-            }
-        });
-    }
-    /*
-     *@$.fn.quickMenu 메서드
-     *@ 퀵메뉴
-     */
-$.fn.quickMenu = function(opt) {
-    var ts = $(this); //.quick_menu
-    var i = 0;
-    $(window).on("scroll", function() { // 이벤트 핸들러안에서 this = (window)
-        var myThis = $(this);
-        var scT = myThis.scrollTop() + opt.top;
-        ts.stop().animate({ top: scT + "px" }, opt.speed)
     });
 }
-
-$.fn.navScrollAuto = function(opt) {
-    var ts = $(this);
-    var myH1 = $("section>h1");
-    var navScrollHnd = function(e) {
-        e.preventDefault();
-        var idx = ts.index($(this));
-        myH1 = $("section>h1").eq(idx);
-        var myH1_t = myH1.offset().top - opt.top;
-        $("html, body").animate({ scrollTop: myH1_t + "px" }, opt.speed);
-    };
-
-    var navChoice = function() {
-        var scTop = $(this).scrollTop();
-        for (var i = myH1.length - 1; i >= 0; i--) {
-            var t = myH1.eq(i).offset().top;
-            if (scTop >= t) {
-                ts.filter(".on").removeClass("on");
-                ts.eq(i).addClass("on");
-            }
-        }
-    }
-    var navChoicHnd = function() {
-
-        navChoice();
-        /*if (scTop >= 3001) {
-            ts.filter(".on").removeClass("on");
-            ts.eq(3).addClass("on");
-        } else if (scTop >= 2001) {
-            ts.filter(".on").removeClass("on");
-            ts.eq(2).addClass("on");
-        } else if (scTop >= 1001) {
-            ts.filter(".on").removeClass("on");
-            ts.eq(1).addClass("on");
-        } else {
-            ts.filter(".on").removeClass("on");
-            ts.eq(0).addClass("on");
-        }*/
-    }
-    ts.on({ "click": navScrollHnd });
-    $(window).on({ "scroll": navChoicHnd });
-}
-
 $(function() {
-    $("#gnb").gnb({ name1: ".gif", name2: "_ov.gif" });
-    $(".quick_menu").quickMenu({ top: 50, speed: 1000 });
-    $("#navWrap").quickMenu({ top: 0, speed: 100 });
-    $("#navWrap>ul>li>a").navScrollAuto({ top: 40, speed: 1000 });
+    $("#gnb").gnb({
+        name1: ".gif",
+        name2: "_ov.gif"
+    });
 });
-
-/**/

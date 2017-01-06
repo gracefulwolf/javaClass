@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+$bgc_1:#f6f6ee;
+$bdc_1:#b4b4b4;
+$bdc_2:#dedede;
+$bdc_3:#ff6738;//lnb border color
+$stc_1:#2a6897;
+$fc_1:#4f4f4f;
+$fc_2:#f93d00;
+$fc_3:#3c6b03;
+
+
+@mixin bds_1($w:1px, $s:solid, $c:$bdc_1) {
+    border: $w $s $c;
+}
+@mixin el_nobg {
+    padding: 0; margin: 0; background: none;
+}
+@function url_c($n) {
+    $img_path : "../images/common/" + $n;
+    @return $img_path;
+}
+@function url_m($n) {
+    $img_path : "../images/main/" + $n;
+    @return $img_path;
+}@function url_b($n) {
+    $img_path : "../images/board/" + $n;
+    @return $img_path;
+}

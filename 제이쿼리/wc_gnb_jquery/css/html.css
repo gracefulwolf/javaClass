@@ -1,0 +1,18 @@
+.html_wrap {
+  padding: 0 28px;
+  text-align: justify; }
+.html_wrap > h3 {
+  color: #1698a8;
+  font-weight: bold;
+  padding-left: 20px;
+  background: url("../images/common/icon_h2.gif") 0 1px no-repeat;
+  margin-bottom: 20px; }
+.html_wrap > h3 + p {
+  margin-bottom: 20px; }
+.html_wrap > h3 + p + div {
+  background: #f7f7f7;
+  margin-bottom: 20px;
+  border-left: 4px solid #dadada;
+  padding: 15px 0 0 0; }
+
+/*# sourceMappingURL=html.css.map */
