@@ -87,8 +87,6 @@ $.fn.playSlide = function(opt) {
         mySliede.reloadSlider(k);
     });
 }
-
-
 /*
  *@$.fn.gnb 메서드 
  *@opt {object} : img 파일명값
@@ -137,7 +135,11 @@ $.fn.quickMenu = function(opt) {
         ts.stop().animate({ top: scT + "px" }, opt.speed)
     });
 }
-
+/*
+*@ $.fn.navScrollAuto : 자동 올가미 매서드
+*@ opt{object} : {top : 50, speed : 800} | {top : 상단간격 speed : 속도}
+*@  $(선택자).navScrollAuto({ top: 100, speed: 1000 });
+*/
 $.fn.navScrollAuto = function(opt) {
     var ts = $(this);
     var myH1 = $("section>h1");
@@ -148,33 +150,25 @@ $.fn.navScrollAuto = function(opt) {
         var myH1_t = myH1.offset().top - opt.top;
         $("html, body").animate({ scrollTop: myH1_t + "px" }, opt.speed);
     };
-
+    //var arr = [0, 1001, 2001, 3001];
+    var arr = [];
+    $.each(myH1,function(){
+        var myH1_t = $(this).offset().top - opt.top;
+        arr.push(myH1_t);
+    });
+    var m = 0;
     var navChoice = function() {
-        var scTop = $(this).scrollTop();
-        for (var i = myH1.length - 1; i >= 0; i--) {
-            var t = myH1.eq(i).offset().top;
-            if (scTop >= t) {
-                ts.filter(".on").removeClass("on");
-                ts.eq(i).addClass("on");
+        var sct = $(window).scrollTop();
+        $.grep(arr, function(d,i){
+            if(d <= sct){
+                m = i;
             }
-        }
+        });
+        ts.filter(".on").removeClass("on");
+        ts.eq(m).addClass("on");
     }
     var navChoicHnd = function() {
-
         navChoice();
-        /*if (scTop >= 3001) {
-            ts.filter(".on").removeClass("on");
-            ts.eq(3).addClass("on");
-        } else if (scTop >= 2001) {
-            ts.filter(".on").removeClass("on");
-            ts.eq(2).addClass("on");
-        } else if (scTop >= 1001) {
-            ts.filter(".on").removeClass("on");
-            ts.eq(1).addClass("on");
-        } else {
-            ts.filter(".on").removeClass("on");
-            ts.eq(0).addClass("on");
-        }*/
     }
     ts.on({ "click": navScrollHnd });
     $(window).on({ "scroll": navChoicHnd });
@@ -184,7 +178,7 @@ $(function() {
     $("#gnb").gnb({ name1: ".gif", name2: "_ov.gif" });
     $(".quick_menu").quickMenu({ top: 50, speed: 1000 });
     $("#navWrap").quickMenu({ top: 0, speed: 100 });
-    $("#navWrap>ul>li>a").navScrollAuto({ top: 40, speed: 1000 });
+    $("#navWrap>ul>li>a").navScrollAuto({ top: 100, speed: 1000 }); 
 });
 
 /**/

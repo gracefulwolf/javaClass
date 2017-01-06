@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="js/ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+    <title>SiteName|PageName</title>
+    <script type="text/javascript">
+    $(function() {
+        TweenMax.from(".box_1", 1, {
+            rotation: 360,
+            y: 300,
+            delay: 0.4
+        });
+        $(window).on("scroll", function() {
+            var sct = $(this).scrollTop();
+            var box2 = $(".box_2");
+            var box3 = $(".box_3");
+            var box2Top = box2.offset().top - 500;
+            var box3Top = box3.offset().top - 500;
+            if (sct >= box2Top || sct >= box3Top) {
+                TweenMax.staggerTo(".box_2", 1, {
+                    x: -2000,
+                    delay: 0.4
+                }, 0.7);
+                TweenMax.to(".box_3", 2, {
+                    rotation: 360,
+                    x: 2000,
+                    delay: 0.4
+                });
+            } else {
+                TweenMax.staggerTo(".box_2", 0.7, {
+                    x: 2000,
+                    delay: 0.4
+                }, 0.5);
+                TweenMax.to(".box_3", 1, {
+                    x: -2000,
+                    delay: 0.4,
+                    rotation:-360
+                });
+            }
+        });
+    });
+    </script>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    a {
+        color: #444;
+        text-decoration: none;
+    }
+    
+    #wrap {
+        width: 900px;
+        height: 5000px;
+        margin: 0 auto;
+        position: relative;
+        background-color: /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+20,2989d8+50,1e5799+80&0+0,0.8+15,1+19,1+81,0.8+85,0+100;Blue+Two+Sided+Transparent */
+        background: -moz-linear-gradient(top, rgba(30, 87, 153, 0) 0%, rgba(30, 87, 153, 0.8) 15%, rgba(30, 87, 153, 1) 19%, rgba(30, 87, 153, 1) 20%, rgba(41, 137, 216, 1) 50%, rgba(30, 87, 153, 1) 80%, rgba(30, 87, 153, 1) 81%, rgba(30, 87, 153, 0.8) 85%, rgba(30, 87, 153, 0) 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(30, 87, 153, 0) 0%, rgba(30, 87, 153, 0.8) 15%, rgba(30, 87, 153, 1) 19%, rgba(30, 87, 153, 1) 20%, rgba(41, 137, 216, 1) 50%, rgba(30, 87, 153, 1) 80%, rgba(30, 87, 153, 1) 81%, rgba(30, 87, 153, 0.8) 85%, rgba(30, 87, 153, 0) 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(30, 87, 153, 0) 0%, rgba(30, 87, 153, 0.8) 15%, rgba(30, 87, 153, 1) 19%, rgba(30, 87, 153, 1) 20%, rgba(41, 137, 216, 1) 50%, rgba(30, 87, 153, 1) 80%, rgba(30, 87, 153, 1) 81%, rgba(30, 87, 153, 0.8) 85%, rgba(30, 87, 153, 0) 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#001e5799', endColorstr='#001e5799', GradientType=0);
+        /* IE6-9 */
+        ;
+        padding-top: 100px;
+    }
+    
+    .quick_menu {
+        width: 80px;
+        height: 200px;
+        background-color: pink;
+        position: absolute;
+        top: 80px;
+        right: -82px;
+    }
+    
+    #navWrap {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+    }
+    
+    #navWrap li {
+        width: 20%;
+        float: left;
+        border: 1px solid #000;
+    }
+    
+    #navWrap li a {
+        display: block;
+        height: 40px;
+        line-height: 40px;
+        background-color: #fff;
+        text-align: center;
+    }
+    
+    #navWrap li a:hover,
+    #navWrap li a.on {
+        background-color: pink;
+        color: #fff;
+    }
+    
+    section {
+        min-height: 1000px;
+        background-color: aqua;
+        border: 1px solid #000;
+    }
+    
+    .sec_2 {
+        background-color: green;
+    }
+    
+    .sec_3 {
+        background-color: orange;
+    }
+    
+    .sec_4 {
+        background-color: yellowgreen;
+    }
+    
+    .sec_5 {
+        background-color: blue;
+    }
+    
+    .box_1 {
+        width: 50px;
+        height: 50px;
+        background-color: red;
+    }
+    
+    .box_2 {
+        background-color: yellow;
+        margin-left: 2000px;
+        width: 500px;
+    }
+    
+    .box_3 {
+        background-color: yellow;
+        position: relative;
+        left: -2000px;
+        width: 500px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <div class="quick_menu">
+            <p>퀵메뉴</p>
+        </div>
+        <nav id="navWrap">
+            <ul>
+                <li><a href="#" class="on">제목-1</a></li>
+                <li><a href="#">제목-2</a></li>
+                <li><a href="#">제목-3</a></li>
+                <li><a href="#">제목-4</a></li>
+                <li><a href="#">제목-5</a></li>
+            </ul>
+        </nav>
+        <section class="sec_1">
+            <h1>제목-1</h1>
+            <div class="box_1">내용1</div>
+        </section>
+        <section class="sec_2">
+            <h1>제목-2</h1>
+            <div class="box_2">
+                <p>
+                    (서울=연합뉴스) 차대운 전명훈 기자 = '비선 실세' 최순실(61·구속기소)씨 딸 정유라(21·범죄인인도청구)씨가 "땡전 한 푼 없다"는 본인 주장과 달리 덴마크 최대 법무법인의 유명 변호사를 선임하는 등 '호화 도피 행각'을 계속해 그가 유럽 체류 자금을 어떻게 대고 있는지 궁금증이 증폭되고 있다.
+                </p>
+            </div>
+            <br/>
+            <div class="box_3">
+                <p>
+                    (서울=연합뉴스) 차대운 전명훈 기자 = '비선 실세' 최순실(61·구속기소)씨 딸 정유라(21·범죄인인도청구)씨가 "땡전 한 푼 없다"는 본인 주장과 달리 덴마크 최대 법무법인의 유명 변호사를 선임하는 등 '호화 도피 행각'을 계속해 그가 유럽 체류 자금을 어떻게 대고 있는지 궁금증이 증폭되고 있다.
+                </p>
+            </div>
+            <br/>
+            <div class="box_2">
+                <p>
+                    (서울=연합뉴스) 차대운 전명훈 기자 = '비선 실세' 최순실(61·구속기소)씨 딸 정유라(21·범죄인인도청구)씨가 "땡전 한 푼 없다"는 본인 주장과 달리 덴마크 최대 법무법인의 유명 변호사를 선임하는 등 '호화 도피 행각'을 계속해 그가 유럽 체류 자금을 어떻게 대고 있는지 궁금증이 증폭되고 있다.
+                </p>
+            </div>
+        </section>
+        <section class="sec_3">
+            <h1>제목-3</h1>
+        </section>
+        <section class="sec_4">
+            <h1>제목-4</h1>
+        </section>
+        <section class="sec_5">
+            <h1>제목-5</h1>
+        </section>
+    </div>
+</body>
+
+</html>
