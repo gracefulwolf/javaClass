@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+    <title>SiteName | pageName</title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    img{max-width: 100%;}
+    
+    .pop_dim {
+        background: url(imgs/bg_dim.png) 0 0;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        overflow: auto;
+    }
+    
+    .popup {
+        width: 100%;
+        max-width: 500px;
+        min-height: 550px;
+        background-color: pink;
+        /*position: absolute;
+       left: 50%;
+       top: 50%; */
+        /*margin-left: -250px; margin-top: -275px */
+        /*transform: translateX(-50%) translateY(-50%);*/
+        /*절반만큼만 가라*/
+    }
+    
+    .pop_inner_wrap {
+        display: table;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        height: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+    
+    .pop_inner {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    </style>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="js/ui.js"></script>
+</head>
+
+<body>
+    <p><a href="0113_popup_1.html" data-type="layerPopup">팝업창-1 열기</a></p>
+    <p><a href="0113_popup_2.html" data-type="layerPopup">팝업창-2 열기</a></p>
+    <!-- <div class="pop_dim">
+        <div class="pop_inner_wrap">
+            <div class="pop_inner">
+                <div class="popup">팝업내용</div>
+            </div>
+        </div>
+    </div> -->
+    <!-- <div class="pop_dim">
+   <div class="popup">팝업내용</div>
+</div> -->
+</body>
+
+</html>

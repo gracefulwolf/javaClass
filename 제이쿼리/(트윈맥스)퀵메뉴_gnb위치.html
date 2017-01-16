@@ -10,10 +10,12 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript" src="js/ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+    <script type="text/javascript" scr="js/ui.js"></script>
+    <script src="js/html5shiv.js"></script>
     <title>SiteName|PageName</title>
     <script type="text/javascript">
     $(function() {
-        TweenMax.from(".box_1", 1, {
+        /*TweenMax.from(".box_1", 1, {
             rotation: 360,
             y: 300,
             delay: 0.4
@@ -45,7 +47,7 @@
                     rotation:-360
                 });
             }
-        });
+        });*/
     });
     </script>
     <style type="text/css">
@@ -62,6 +64,10 @@
     a {
         color: #444;
         text-decoration: none;
+    }
+    
+    html {
+        overflow-x: hidden;
     }
     
     #wrap {
@@ -149,14 +155,13 @@
     
     .box_2 {
         background-color: yellow;
-        margin-left: 2000px;
         width: 500px;
+        position: relative;
     }
     
     .box_3 {
         background-color: yellow;
         position: relative;
-        left: -2000px;
         width: 500px;
     }
     </style>
@@ -182,19 +187,19 @@
         </section>
         <section class="sec_2">
             <h1>제목-2</h1>
-            <div class="box_2">
+            <div class="box_2" data-type="motion" data-motion-opt='{"direct":"right","speed":1,"term":0.7,"dst":3000}'>
                 <p>
                     (서울=연합뉴스) 차대운 전명훈 기자 = '비선 실세' 최순실(61·구속기소)씨 딸 정유라(21·범죄인인도청구)씨가 "땡전 한 푼 없다"는 본인 주장과 달리 덴마크 최대 법무법인의 유명 변호사를 선임하는 등 '호화 도피 행각'을 계속해 그가 유럽 체류 자금을 어떻게 대고 있는지 궁금증이 증폭되고 있다.
                 </p>
             </div>
             <br/>
-            <div class="box_3">
+            <div class="box_2" data-type="motion" data-motion-opt='{"direct":"right","speed":1,"term":0.7,"dst":3000}'>
                 <p>
                     (서울=연합뉴스) 차대운 전명훈 기자 = '비선 실세' 최순실(61·구속기소)씨 딸 정유라(21·범죄인인도청구)씨가 "땡전 한 푼 없다"는 본인 주장과 달리 덴마크 최대 법무법인의 유명 변호사를 선임하는 등 '호화 도피 행각'을 계속해 그가 유럽 체류 자금을 어떻게 대고 있는지 궁금증이 증폭되고 있다.
                 </p>
             </div>
             <br/>
-            <div class="box_2">
+            <div class="box_2" data-type="motion" data-motion-opt='{"direct":"right","speed":1,"term":0.7,"dst":3000}'>
                 <p>
                     (서울=연합뉴스) 차대운 전명훈 기자 = '비선 실세' 최순실(61·구속기소)씨 딸 정유라(21·범죄인인도청구)씨가 "땡전 한 푼 없다"는 본인 주장과 달리 덴마크 최대 법무법인의 유명 변호사를 선임하는 등 '호화 도피 행각'을 계속해 그가 유럽 체류 자금을 어떻게 대고 있는지 궁금증이 증폭되고 있다.
                 </p>
@@ -202,6 +207,11 @@
         </section>
         <section class="sec_3">
             <h1>제목-3</h1>
+            <div class="box_3" data-type="motion" data-motion-opt='{"direct":"right","speed":1,"term":0.7,"dst":3000}'>
+                <p>
+                    (서울=연합뉴스) 차대운 전명훈 기자 = '비선 실세' 최순실(61·구속기소)씨 딸 정유라(21·범죄인인도청구)씨가 "땡전 한 푼 없다"는 본인 주장과 달리 덴마크 최대 법무법인의 유명 변호사를 선임하는 등 '호화 도피 행각'을 계속해 그가 유럽 체류 자금을 어떻게 대고 있는지 궁금증이 증폭되고 있다.
+                </p>
+            </div>
         </section>
         <section class="sec_4">
             <h1>제목-4</h1>

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+    <title>SiteName|PageName</title>
+    <script type="text/javascript">
+    $(function() {
+        $(".faq a").on("click", function() {
+            var myReply = $(this).parent().next();
+            if (myReply.is(":hidden")) {
+                $(".faq a").removeClass("on");
+                $(this).addClass("on");
+                $(".faq dd:visible").slideUp("fast");
+                myReply.slideDown("fast");
+            } else{
+                $(".faq dd:visible").slideUp("fast");
+                $(".faq a").removeClass("on");
+            }
+        });
+    });
+    </script>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    a {
+        text-decoration: none;
+        color: #333;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    .faq {
+        max-width: 500px;
+        margin: 50px auto;
+        background-color: pink;
+    }
+    
+    .faq dt a {
+        display: block;
+        padding: 10px;
+        border-bottom: 1px solid #333;
+        position: relative;
+    }
+    
+    .faq dt a:after {
+        content: "";
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: url(imgs/icon_faq.png) 0 0 no-repeat;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        transition: all 0.3s ease;
+    }
+    
+    .faq dt a.on:after {
+        transform: rotate(180deg);
+    }
+    
+    .faq dd {
+        background-color: #fff;
+        display: none;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="faq">
+        <ul>
+            <li>
+                <dl>
+                    <dt><a href="#">질문내용1</a></dt>
+                    <dd>서울=연합뉴스) 방현덕 현혜란 기자 = 최순실씨의 '개인비서'로 의심받는 이영선 청와대 행정관이 자신에게 청와대 근무를 제안한 것은 안봉근 전 국정홍보비서관이라고 증언했다.</dd>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt><a href="#">질문내용2</a></dt>
+                    <dd>12일 헌법재판소에서 열린 박근혜 대통령 탄핵심판 4차 변론기일에서 증인으로 나온 이 행정관은 안 비서관이 자신에게 박 대통령 상근 경호업무를 제안했다고 밝혔다. </dd>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt><a href="#">질문내용3</a></dt>
+                    <dd>그는 '증인이 수행한 업무가 대통령 수행과 비공식 업무라고 했는데 맞는가'라는 질문에 "그렇다"고 답했다. 또 자신의 휴대전화에 안봉근 비서관을 'S1'이라고, 최씨를 '선생님'이라고 저장해놨다고 진술했다. </dd>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt><a href="#">질문내용4</a></dt>
+                    <dd>다만 그는 자신이 차명폰을 갖고 다닌 게 안봉근 전 비서관 등과 통화하기 위해서가 아니었느냐는 질문에 "국가 원수가 대부분 도·감청 위협을 안고 있기 때문에 개인적으로 판단해 마련한 것"이라고 말했다.
+                    </dd>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt><a href="#">질문내용5</a></dt>
+                    <dd>그는 그러나 TV조선이 공개한 2014년 11월 '의상실 영상'에서 최씨 휴대전화를 셔츠에 닦아 건네는 모습이 포착되는 등 최씨의 개인비서로 일한 의혹을 받고 있다.</dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
