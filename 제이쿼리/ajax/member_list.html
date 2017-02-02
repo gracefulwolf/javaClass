@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid green;
+    }
+    
+    .member_list {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .member_list th,
+    .member_list td {
+        border: 1px solid pink;
+        padding: 5px 3px;
+    }
+    </style>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        $.ajax({
+            url: "http://gfwolf.dothome.co.kr/ajax/db.php",
+            dataType: "json",
+            success: function(data) {
+                //console.log(data);
+                var tbody = $("<tbody/>"); //data.size() == data.length
+                var arrData = [];
+                for (var i = 0; i < data.length; i++) {
+                    //console.log(data[i]);
+
+                    var t = "";
+                    t += "<tr>";
+                    t += "<td>" + data[i].id + "</td>"
+                    t += "<td>" + data[i].first_name + "</td>"
+                    t += "<td>" + data[i].last_name + "</td>"
+                    t += "<td>" + data[i].email + "</td>"
+                    t += "<td>" + data[i].gender + "</td>"
+                    t += "<td>" + data[i].ip_address + "</td>"
+                    t += "</tr>";
+                    arrData.push(t);
+                }
+                var myData = arrData.slice(0, 10).join("");
+                tbody.html(myData).appendTo(".member_list table");
+                var btn = "";
+                if (data.length > 10) {
+                    btn += "<p style ='text-align:center; padding-top: 10px;'>";
+                    btn += "<button class = 'more_btn'> 더보기 </button>";
+                    btn += "</p>"
+                    $(btn).appendTo(".member_list");
+                }
+                var maxNum = Math.ceil(data.length / 10);
+                var pageNum = 1;
+                $(document).on("click", ".member_list .more_btn", function() {
+                    //alert(1243);
+                    if (pageNum >= maxNum) {
+                    	$(".member_list .more_btn").remove();
+                        return false;
+                    }
+                        pageNum++;
+                        //console.log(pageNum);
+                        myData = arrData.slice(0, pageNum*10).join("");
+                        tbody.html(myData).appendTo(".member_list table");
+                    
+
+                });
+            }
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <h1>멤버 리스트</h1>
+    <div class="member_list">
+        <table>
+            <caption>멤버리스트</caption>
+            <colgroup>
+                <col style="width:30px">
+                <col style="width:100px">
+                <col style="width:100px">
+                <col style="width:200px">
+                <col style="width:100px">
+                <col>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">FIRST_NAME</th>
+                    <th scope="col">LAST NAME</th>
+                    <th scope="col">EMAIL</th>
+                    <th scope="col">GENDER</th>
+                    <th scope="col">IP_ADDRESS</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+
+</html>

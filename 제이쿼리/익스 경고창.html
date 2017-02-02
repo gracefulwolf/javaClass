@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>익스경고창</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-browser/0.1.0/jquery.browser.js"></script>
+    <script type="text/javascript">
+    	console.log($.browser.msie);
+    	console.log($.browser.version);
+
+    	
+    	var browser = (function(){
+    		var name;
+    		var ver = $.browser.version.split(".")[0];
+    		var enable = true;
+    		var arrNot =  [{a:"IE",b:7} , {a:"chrome",b:56}]
+    		if($.browser.msie){//msie
+    			name = "IE";
+    		} else if($.browser.safari){//safari
+    			name = "Safari";
+    		} else if($.browser.opera){//opera
+    			name = "Opera";
+    		} else if($.browser.mozilla){//firefox
+    			name = "FireFox";
+    		} else if($.browser.chrome){//chrome
+    			name = "Chrome";
+    		} else {
+    			name = "Etc";
+    		}
+    		for( var i = 0; i < arrNot.length; i++){
+    			var obj = arrNot[i];
+    			if(name.toLowerCase()  == obj.a && ver <= obj.b){
+    				enable = false;
+    			}
+    		}
+    		return { name: name , ver : ver , enable : enable};
+    	}());
+    	$(function(){
+    		if(!browser.enable){
+    			$(".current").text(browser.name+" " +browser.ver)
+    			$("#browser_notice").show();
+    		}
+    	});
+    </script>
+    <style type="text/css">
+    	*{margin:0; padding:0;}
+    	#browser_notice{background: #000;color: #fff;width: 100%; height: 100%; z-index: 9999999; position: fixed; text-align: center;
+    					display: none;}
+
+    </style>
+</head>
+
+<body>
+	<div id="browser_notice">
+		<h1>사용안내</h1>
+		<p>본 사이트는 IE8이상, Chrome, Safari, FireFox, Opera에 최적화되어 있습니다.</p>
+		<p>현재 사용 브라우져 : <span class="current">IE8</span></p>
+		<h2>브라우저 다운로드</h2>
+		<ul>
+			<li><a href="#">
+					<p>익스이미지</p>
+					<p>IE11</p>
+					<p>다운로드</p>
+				</a></li>
+			<li><a href="#">
+					<p>Chrome 이미지</p>
+					<p>Ver</p>
+					<p>다운로드</p>
+				</a></li>
+			<li><a href="#">
+					<p>Safari 이미지</p>
+					<p>Ver</p>
+					<p>다운로드</p>
+				</a></li>
+			<li><a href="#">
+					<p>FireFox 이미지</p>
+					<p>Ver</p>
+					<p>다운로드</p>
+				</a></li>
+			<li><a href="#">
+					<p>Opera</p>
+					<p>Ver</p>
+					<p>다운로드</p>
+				</a></li>
+		</ul>
+	</div>
+</body>
+
+</html>

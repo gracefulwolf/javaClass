@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="http://gfwolf.dothome.co.kr/js/ui.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/x2js/1.2.0/xml2json.js"></script>
+    <script type="text/javascript" src="js/jquery.ajax-cross-origin.min.js"></script>
+    <script type="text/javascript">
+        function weather() {
+            $.ajax({
+                url:"http://api.wunderground.com/api/3bc480c050e36e2a/geolookup/conditions/lang:KR/q/South%20Korea/Yongin.json",
+                dataType:"json",
+                success:function(data){
+                    //console.log(data.current_observation);
+                    var w = data.current_observation;
+                    var temp = w.temp_c;
+                    var myImgSrc = w.icon_url;
+                    var myDay = w.local_time_rfc822.substring(0,11);
+                    var myTemp = $("<p/>",{text:temp});
+                    var myImage = $("<img/>",{src:myImgSrc});
+                    var myToday = $("<p/>",{text:myDay});
+                    $(".weather").empty();
+                    myImage.appendTo(".weather");
+                    myTemp.appendTo(".weather"); 
+                    myToday.appendTo(".weather"); 
+
+                    //console.log(myDay.substring(0,11));
+                }
+            });
+        }
+
+        $(function(){
+            weather();
+            setInterval(weather,1000*60*60*3);
+
+            $.ajax({
+                crossOrigin: true,
+                url:"http://www.chosun.com/site/data/rss/ent.xml",
+                dataType:"xml",
+                success:function(data){
+                    var x2js = new X2JS();
+                    var jsonObj = x2js.xml_str2json( data );
+                    //console.log(jsonObj);
+                    //console.log($(data).find("item"));
+                    /*var myItem = $(data).find("item");
+                    $.each(myItem, function(i,o){
+                        var eachItem = $(o);
+                        var myTitle = $(o).find("title").text();
+                        myTitle = myTitle.substring(9,myTitle.length -3);
+                        //console.log(myTitle.substring(9,myTitle.length -3));
+                        var myLink = eachItem.find("link");
+                        console.log(myLink);
+                    })*/
+                    var myItem = jsonObj.rss.channel.item;
+                    for(var i = 0; i < myItem.length; i++){
+                        var myTitle = myItem[i].title;
+                        var myLink = myItem[i].link;
+                        //console.log(myItem[i].title);
+                        //console.log(myLink);
+                        var newsList = $("<p><a href='" + myLink + "'>" + myTitle + "</a></p>");
+                        $(".news").append(newsList);
+
+                    }
+
+                }
+            })
+        });
+    </script>
+    <style type="text/css"></style>
+</head>
+
+<body>
+	<div class="weather"></div>
+    <div class="news"></div>
+</body>
+
+</html>

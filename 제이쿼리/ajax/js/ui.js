@@ -235,7 +235,7 @@
     $(window).on("resize", function() {
         /*console.log(++i);*/
         /*console.log($(window).width());*/
-        var w = $(window).width()+17;
+        var w = $(window).width();
         var b = $("body");
 
         if (w >= 1024) {

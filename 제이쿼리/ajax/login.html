@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SiteName|PageName</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var loginFnc = function(e) {
+            e.preventDefault();
+            var reg_id = /^[a-z]{1}\w{5,11}$/g;
+            var reg_pw = /^\w{6,12}$/g;
+
+            var my_id = $("#user_id");
+            var my_pw = $("#user_pw");
+
+            var result_id = reg_id.exec(my_id.val());
+            var result_pw = reg_pw.exec(my_pw.val());
+
+            if (result_id == null) {
+                alert("잘못된 아이디 입니다");
+                my_id.val("");
+                my_id.focus();
+                return false;
+            } else if (result_pw == null) {
+                alert("잘못된 패스워드 입니다");
+                my_pw.val("");
+                my_pw.focus();
+                return false;
+            }
+            //$(this).submit();
+            var myAction = $(this).attr("action");
+            var myData = $(this).serialize();
+            //alert(myData);
+            $.ajax({
+             	url:myAction,
+             	data:myData,
+             	type:"GET",
+             	success:function(data) {
+             		//alert(data);
+             		if(data == "ok_member") {
+             			var t = my_id.val()+"님 반갑습니다";
+             			$(".log_txt").text(t);
+             		} else{
+             			alert("아이디와 비밀번호가 일치하지 않습니다.");
+             			 my_id.val("");
+             			 my_pw.val("");
+             			 my_id.focus();
+
+             		}
+             	}
+             });
+        }
+        $("#login_f").on("submit", loginFnc);
+    });
+    </script>
+</head>
+
+<body>
+	<p class="log_txt">로그인을 해주세요.</p>
+    <form action="login.php" id="login_f">
+        <fieldset>
+            <legend>회원로그인</legend>
+            <p>
+                <label for="user_id">아이디
+                    <input type="text" name="user_id" id="user_id" value="abcdef">
+                </label>
+            </p>
+            <p>
+                <label for="user_pw">비밀번호
+                    <input type="password" name="user_pw" id="user_pw" value="123456">
+                </label>
+            </p>
+            <p>
+                <input type="submit" value="로그인">
+            </p>
+        </fieldset>
+    </form>
+</body>
+
+</html>
