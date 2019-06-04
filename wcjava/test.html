@@ -12,7 +12,7 @@
         .visual_wr{position: relative;top:0;left:0;width:100%;height:100%;}
         .visual{position: relative;top:0;left:0;min-height:100%;}
         header{height:49px;border-bottom:1px solid #000;background:gray;z-index: 999;overflow: hidden;}
-        .main-f{position: relative;height: 100%;max-height:100%;padding:0;background:linear-gradient(to bottom, #0fc7fc, #0d54bb);}
+        .main-f{position: relative;height: 100%;min-height:calc(100vh - 49px);padding:0;background:linear-gradient(to bottom, #0fc7fc, #0d54bb);}
         .main-f .img-phone{display:block;position:absolute;top:2.0rem;right:0;width:100%;}
         .main-f .fix-area{position:absolute;bottom:2.0rem;left:1.5rem;right:1.5rem;}
         .main-f .fix-area .img-txt{display:block;width:75%;}
@@ -47,12 +47,12 @@
 </body>
 <script>
 $(document).ready(function(){   
-    console.log($('.main-f').height())
+    // console.log($('.main-f').height())
 
-    $('.main-f').css({
-        height : $(window).height() - $('header').outerHeight()
-    })
-    $('.txt1').text($(window).height())
+    // $('.main-f').css({
+    //     height : $(window).height() - $('header').outerHeight()
+    // })
+    // $('.txt1').text($(window).height())
 });
 </script>
 </html>
